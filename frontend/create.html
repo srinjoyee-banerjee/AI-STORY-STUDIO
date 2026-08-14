@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STORY AI — Create Your Story</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f5faf3;
+            color: #183e29;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(183, 220, 183, 0.45),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(188, 225, 192, 0.4),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fbfdf9,
+                    #edf7eb
+                );
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 82px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            border-bottom: 1px solid rgba(30, 100, 55, 0.1);
+
+            background: rgba(255,255,255,0.7);
+
+            backdrop-filter: blur(15px);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 20;
+        }
+
+        .logo {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+            color: #14572f;
+
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #52a363;
+        }
+
+        .header-text {
+            color: #6a7b6d;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            width: min(1150px, 92%);
+
+            margin: 55px auto 80px;
+        }
+
+        .intro {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .intro-label {
+            color: #429152;
+
+            font-size: 13px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+        }
+
+        .intro h1 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(48px, 6vw, 72px);
+
+            color: #164b2d;
+
+            line-height: 1;
+        }
+
+        .intro p {
+            max-width: 650px;
+
+            margin: 20px auto 0;
+
+            color: #68776b;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+        /* =========================
+           CREATOR CARD
+        ========================= */
+
+        .creator {
+            background: rgba(255,255,255,0.82);
+
+            border: 1px solid rgba(36,105,57,0.1);
+
+            border-radius: 30px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 25px 70px rgba(36, 95, 51, 0.1);
+
+            backdrop-filter: blur(15px);
+        }
+
+        /* =========================
+           FORM GRID
+        ========================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 28px;
+        }
+
+        .field {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #245c38;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 10px;
+        }
+
+        .hint {
+            font-size: 12px;
+
+            color: #879489;
+
+            margin-top: 6px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+
+            border: 1px solid #d7e5d7;
+
+            background: #fbfdfb;
+
+            border-radius: 14px;
+
+            padding: 15px 17px;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 15px;
+
+            color: #234b31;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #4b9c5b;
+
+            box-shadow:
+                0 0 0 4px rgba(75,156,91,0.1);
+
+            background: white;
+        }
+
+        textarea {
+            min-height: 180px;
+
+            resize: vertical;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CHOICE BUTTONS
+        ========================= */
+
+        .choices {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .choice {
+            padding: 11px 17px;
+
+            border-radius: 30px;
+
+            border: 1px solid #d5e5d6;
+
+            background: #f9fcf8;
+
+            color: #52705b;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            font-size: 13px;
+        }
+
+        .choice:hover {
+            border-color: #54a263;
+
+            color: #27713c;
+        }
+
+        .choice.selected {
+            background: #2f8d49;
+
+            color: white;
+
+            border-color: #2f8d49;
+
+            box-shadow:
+                0 7px 18px rgba(47,141,73,0.2);
+        }
+
+        /* =========================
+           DIVIDER
+        ========================= */
+
+        .divider {
+            height: 1px;
+
+            background: #e1ebe1;
+
+            margin: 38px 0;
+        }
+
+        /* =========================
+           GENERATE
+        ========================= */
+
+        .generate-area {
+            text-align: center;
+
+            padding-top: 5px;
+        }
+
+        .generate-btn {
+            border: none;
+
+            background: #268746;
+
+            color: white;
+
+            padding: 17px 45px;
+
+            border-radius: 50px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 28px rgba(38,135,70,0.22);
+
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            background: #176c35;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 32px rgba(38,135,70,0.28);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .generate-icon {
+            margin-right: 9px;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #4e7258;
+
+            font-size: 14px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+
+            border: 2px solid #d2e5d4;
+
+            border-top-color: #328c4b;
+
+            border-radius: 50%;
+
+            display: inline-block;
+
+            vertical-align: middle;
+
+            margin-right: 8px;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        .result {
+            display: none;
+
+            margin-top: 40px;
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f9fcf8,
+                    #edf7ed
+                );
+
+            border: 1px solid #d7e7d8;
+        }
+
+        .result.show {
+            display: block;
+
+            animation: appear 0.6s ease;
+        }
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .result-label {
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            color: #499558;
+
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+        .result h2 {
+            font-family: "Cormorant Garamond", serif;
+
+            color: #174a2d;
+
+            font-size: 42px;
+
+            margin-bottom: 20px;
+        }
+
+        #storyOutput {
+            color: #405a48;
+
+            line-height: 1.9;
+
+            white-space: pre-wrap;
+
+            font-size: 16px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 750px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            .header-text {
+                display: none;
+            }
+
+            main {
+                margin-top: 35px;
+            }
+
+            .creator {
+                padding: 28px 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .intro h1 {
+                font-size: 52px;
+            }
+
+            .generate-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        STORY <span>AI</span>
+    </div>
+
+    <div class="header-text">
+        Your imagination. Your world. Your story.
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+    <section class="intro">
+
+        <div class="intro-label">
+            Begin Your Journey
+        </div>
+
+        <h1>
+            What will you imagine today?
+        </h1>
+
+        <p>
+            Give your imagination a beginning.
+            Tell us about the world you want to create,
+            and STORY AI will help bring it to life.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         STORY CREATOR
+    ========================= -->
+
+    <section class="creator">
+
+        <div class="form-grid">
+
+
+            <!-- STORY IDEA -->
+
+            <div class="field full">
+
+                <label>
+                    ✦ Your imagination
+                </label>
+
+                <textarea
+                    id="storyIdea"
+                    placeholder="A girl discovers an ancient tower hidden beyond the clouds..."
+                ></textarea>
+
+                <span class="hint">
+                    Describe anything — a character, place, memory, dream or completely new idea.
+                </span>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <div class="field">
+
+                <label>
+                    Story title
+                </label>
+
+                <input
+                    id="storyTitle"
+                    type="text"
+                    placeholder="The Tower Beyond the Clouds"
+                >
+
+            </div>
+
+
+            <!-- GENRE -->
+
+            <div class="field">
+
+                <label>
+                    Genre
+                </label>
+
+                <select id="genre">
+
+                    <option value="Fantasy">
+                        Fantasy
+                    </option>
+
+                    <option value="Adventure">
+                        Adventure
+                    </option>
+
+                    <option value="Mystery">
+                        Mystery
+                    </option>
+
+                    <option value="Romance">
+                        Romance
+                    </option>
+
+                    <option value="Science Fiction">
+                        Science Fiction
+                    </option>
+
+                    <option value="Horror">
+                        Horror
+                    </option>
+
+                    <option value="Thriller">
+                        Thriller
+                    </option>
+
+                    <option value="Drama">
+                        Drama
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MOOD -->
+
+            <div class="field">
+
+                <label>
+                    Story mood
+                </label>
+
+                <div class="choices">
+
+                    <button class="choice selected"
+                            data-group="mood"
+                            onclick="selectChoice(this)">
+                        ✨ Magical
+                    </button>
+
+                    <button class="choice"
+                            data-group="mood"
+                            onclick="selectChoice(this)">
+                        🌿 Peaceful
+                    </button>
+
+                    <button class="choice"
+                            data-group="mood"
+                            onclick="selectChoice(this)">
+                        🌙 Mysterious
+                    </button>
+
+                    <button class="choice"
+                            data-group="mood"
+                            onclick="selectChoice(this)">
+                        ❤️ Emotional
+                    </button>
+
+                    <button class="choice"
+                            data-group="mood"
+                            onclick="selectChoice(this)">
+                        ⚔️ Epic
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- LENGTH -->
+
+            <div class="field">
+
+                <label>
+                    Story length
+                </label>
+
+                <select id="length">
+
+                    <option value="Short">
+                        Short Story
+                    </option>
+
+                    <option value="Medium">
+                        Medium Story
+                    </option>
+
+                    <option value="Long">
+                        Long Story
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CHARACTER -->
+
+            <div class="field">
+
+                <label>
+                    Main character
+                </label>
+
+                <input
+                    id="character"
+                    type="text"
+                    placeholder="A curious young astronomer"
+                >
+
+            </div>
+
+
+            <!-- SETTING -->
+
+            <div class="field">
+
+                <label>
+                    Story setting
+                </label>
+
+                <input
+                    id="setting"
+                    type="text"
+                    placeholder="A forgotten kingdom above the clouds"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <!-- =========================
+             GENERATE
+        ========================= -->
+
+        <div class="generate-area">
+
+            <button
+                class="generate-btn"
+                id="generateBtn"
+                onclick="generateStory()">
+
+                <span class="generate-icon">
+                    ✨
+                </span>
+
+                Create My Story
+
+            </button>
+
+
+            <div
+                class="loading"
+                id="loading">
+
+                <span class="spinner"></span>
+
+                STORY AI is bringing your imagination to life...
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RESULT
+        ========================= -->
+
+        <div
+            class="result"
+            id="result">
+
+            <div class="result-label">
+                Your story
+            </div>
+
+            <h2 id="resultTitle">
+                Your Story
+            </h2>
+
+            <div id="storyOutput"></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    /* =========================
+       CHOICE BUTTONS
+    ========================= */
+
+    function selectChoice(button) {
+
+        const group = button.dataset.group;
+
+        document
+            .querySelectorAll(
+                `.choice[data-group="${group}"]`
+            )
+            .forEach(item => {
+                item.classList.remove("selected");
+            });
+
+        button.classList.add("selected");
+    }
+
+
+    /* =========================
+       GENERATE STORY
+    ========================= */
+
+    async function generateStory() {
+
+        const idea =
+            document.getElementById("storyIdea").value.trim();
+
+        const title =
+            document.getElementById("storyTitle").value.trim();
+
+        const genre =
+            document.getElementById("genre").value;
+
+        const length =
+            document.getElementById("length").value;
+
+        const character =
+            document.getElementById("character").value.trim();
+
+        const setting =
+            document.getElementById("setting").value.trim();
+
+        const selectedMood =
+            document.querySelector(
+                '.choice[data-group="mood"].selected'
+            );
+
+        const mood =
+            selectedMood
+                ? selectedMood.innerText
+                : "Magical";
+
+
+        if (!idea) {
+
+            alert(
+                "Tell STORY AI what you are imagining first ✨"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById("generateBtn");
+
+        const loading =
+            document.getElementById("loading");
+
+        const result =
+            document.getElementById("result");
+
+
+        button.disabled = true;
+
+        loading.classList.add("active");
+
+        result.classList.remove("show");
+
+
+        /*
+         * CONNECT TO YOUR FLASK BACKEND
+         *
+         * Change /generate-story if your
+         * Flask endpoint has another name.
+         */
+
+        try {
+
+            const response = await fetch(
+                "/generate-story",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        idea: idea,
+
+                        title: title,
+
+                        genre: genre,
+
+                        mood: mood,
+
+                        length: length,
+
+                        character: character,
+
+                        setting: setting
+
+                    })
+
+                }
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Story generation failed"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            document.getElementById(
+                "resultTitle"
+            ).innerText =
+                data.title || title || "Your Story";
+
+
+            document.getElementById(
+                "storyOutput"
+            ).innerText =
+                data.story || data.generated_story || "";
+
+
+            result.classList.add("show");
+
+
+            result.scrollIntoView({
+                behavior: "smooth"
+            });
+
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            /*
+             * TEMPORARY FALLBACK
+             *
+             * Remove this when your Flask
+             * endpoint is connected.
+             */
+
+            document.getElementById(
+                "resultTitle"
+            ).innerText =
+                title || "The Beginning";
+
+
+            document.getElementById(
+                "storyOutput"
+            ).innerText =
+                `Your story begins in ${setting || "a world beyond imagination"}.
+
+${character || "A mysterious traveler"} stood at the edge of a world no ordinary map could describe.
+
+The idea you gave STORY AI was:
+
+"${idea}"
+
+This is where your story begins...
+
+Your imagination has opened the door.
+What happens next is yours to discover. ✨`;
+
+
+            result.classList.add("show");
+
+
+            result.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+        finally {
+
+            button.disabled = false;
+
+            loading.classList.remove("active");
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
