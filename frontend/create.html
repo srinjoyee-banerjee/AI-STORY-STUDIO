@@ -1,6 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,7 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
 
@@ -68,7 +73,7 @@
 
             border-bottom: 1px solid rgba(30, 100, 55, 0.1);
 
-            background: rgba(255,255,255,0.7);
+            background: rgba(255, 255, 255, 0.72);
 
             backdrop-filter: blur(15px);
 
@@ -80,13 +85,9 @@
 
         .logo {
             font-family: "Cormorant Garamond", serif;
-
             font-size: 32px;
-
             font-weight: 700;
-
             color: #14572f;
-
             letter-spacing: 1px;
         }
 
@@ -96,7 +97,6 @@
 
         .header-text {
             color: #6a7b6d;
-
             font-size: 14px;
         }
 
@@ -106,49 +106,35 @@
 
         main {
             width: min(1150px, 92%);
-
             margin: 55px auto 80px;
         }
 
         .intro {
             text-align: center;
-
             margin-bottom: 45px;
         }
 
         .intro-label {
             color: #429152;
-
             font-size: 13px;
-
             letter-spacing: 4px;
-
             text-transform: uppercase;
-
             font-weight: 600;
-
             margin-bottom: 12px;
         }
 
         .intro h1 {
             font-family: "Cormorant Garamond", serif;
-
             font-size: clamp(48px, 6vw, 72px);
-
             color: #164b2d;
-
             line-height: 1;
         }
 
         .intro p {
             max-width: 650px;
-
             margin: 20px auto 0;
-
             color: #68776b;
-
             line-height: 1.7;
-
             font-size: 16px;
         }
 
@@ -157,9 +143,9 @@
         ========================= */
 
         .creator {
-            background: rgba(255,255,255,0.82);
+            background: rgba(255, 255, 255, 0.84);
 
-            border: 1px solid rgba(36,105,57,0.1);
+            border: 1px solid rgba(36, 105, 57, 0.1);
 
             border-radius: 30px;
 
@@ -172,20 +158,17 @@
         }
 
         /* =========================
-           FORM GRID
+           FORM
         ========================= */
 
         .form-grid {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 28px;
         }
 
         .field {
             display: flex;
-
             flex-direction: column;
         }
 
@@ -195,20 +178,15 @@
 
         label {
             color: #245c38;
-
             font-size: 14px;
-
             font-weight: 600;
-
             margin-bottom: 10px;
         }
 
         .hint {
             font-size: 12px;
-
             color: #879489;
-
-            margin-top: 6px;
+            margin-top: 7px;
         }
 
         input,
@@ -241,28 +219,24 @@
             border-color: #4b9c5b;
 
             box-shadow:
-                0 0 0 4px rgba(75,156,91,0.1);
+                0 0 0 4px rgba(75, 156, 91, 0.1);
 
             background: white;
         }
 
         textarea {
-            min-height: 180px;
-
+            min-height: 190px;
             resize: vertical;
-
             line-height: 1.7;
         }
 
         /* =========================
-           CHOICE BUTTONS
+           CHOICES
         ========================= */
 
         .choices {
             display: flex;
-
             flex-wrap: wrap;
-
             gap: 10px;
         }
 
@@ -286,19 +260,16 @@
 
         .choice:hover {
             border-color: #54a263;
-
             color: #27713c;
         }
 
         .choice.selected {
             background: #2f8d49;
-
             color: white;
-
             border-color: #2f8d49;
 
             box-shadow:
-                0 7px 18px rgba(47,141,73,0.2);
+                0 7px 18px rgba(47, 141, 73, 0.2);
         }
 
         /* =========================
@@ -307,9 +278,7 @@
 
         .divider {
             height: 1px;
-
             background: #e1ebe1;
-
             margin: 38px 0;
         }
 
@@ -319,7 +288,6 @@
 
         .generate-area {
             text-align: center;
-
             padding-top: 5px;
         }
 
@@ -341,7 +309,7 @@
             cursor: pointer;
 
             box-shadow:
-                0 12px 28px rgba(38,135,70,0.22);
+                0 12px 28px rgba(38, 135, 70, 0.22);
 
             transition: all 0.3s ease;
         }
@@ -352,14 +320,12 @@
             transform: translateY(-3px);
 
             box-shadow:
-                0 17px 32px rgba(38,135,70,0.28);
+                0 17px 32px rgba(38, 135, 70, 0.28);
         }
 
         .generate-btn:disabled {
             opacity: 0.6;
-
             cursor: not-allowed;
-
             transform: none;
         }
 
@@ -407,11 +373,9 @@
         }
 
         @keyframes spin {
-
             to {
                 transform: rotate(360deg);
             }
-
         }
 
         /* =========================
@@ -439,12 +403,10 @@
 
         .result.show {
             display: block;
-
             animation: appear 0.6s ease;
         }
 
         @keyframes appear {
-
             from {
                 opacity: 0;
                 transform: translateY(15px);
@@ -454,7 +416,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-
         }
 
         .result-label {
@@ -490,10 +451,38 @@
         }
 
         /* =========================
+           ERROR
+        ========================= */
+
+        .error {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 14px 18px;
+
+            border-radius: 12px;
+
+            background: #fff3f0;
+
+            border: 1px solid #f0c8bf;
+
+            color: #a33d2d;
+
+            font-size: 14px;
+
+            text-align: center;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        /* =========================
            MOBILE
         ========================= */
 
-        @media(max-width: 750px) {
+        @media (max-width: 750px) {
 
             header {
                 padding: 0 5%;
@@ -527,535 +516,623 @@
                 width: 100%;
             }
 
+            .result {
+                padding: 28px 22px;
+            }
+
+            .result h2 {
+                font-size: 36px;
+            }
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-<div class="background"></div>
+    <div class="background"></div>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+    <!-- HEADER -->
 
-<header>
+    <header>
 
-    <div class="logo">
-        STORY <span>AI</span>
-    </div>
-
-    <div class="header-text">
-        Your imagination. Your world. Your story.
-    </div>
-
-</header>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main>
-
-    <section class="intro">
-
-        <div class="intro-label">
-            Begin Your Journey
+        <div class="logo">
+            STORY <span>AI</span>
         </div>
 
-        <h1>
-            What will you imagine today?
-        </h1>
+        <div class="header-text">
+            Your imagination. Your world. Your story.
+        </div>
 
-        <p>
-            Give your imagination a beginning.
-            Tell us about the world you want to create,
-            and STORY AI will help bring it to life.
-        </p>
-
-    </section>
+    </header>
 
 
-    <!-- =========================
-         STORY CREATOR
-    ========================= -->
+    <!-- MAIN -->
 
-    <section class="creator">
+    <main>
 
-        <div class="form-grid">
+        <section class="intro">
 
-
-            <!-- STORY IDEA -->
-
-            <div class="field full">
-
-                <label>
-                    ✦ Your imagination
-                </label>
-
-                <textarea
-                    id="storyIdea"
-                    placeholder="A girl discovers an ancient tower hidden beyond the clouds..."
-                ></textarea>
-
-                <span class="hint">
-                    Describe anything — a character, place, memory, dream or completely new idea.
-                </span>
-
+            <div class="intro-label">
+                Begin Your Journey
             </div>
 
+            <h1>
+                What will you imagine today?
+            </h1>
 
-            <!-- TITLE -->
+            <p>
+                Give your imagination a beginning.
+                Tell us about the world you want to create,
+                and STORY AI will help bring it to life.
+            </p>
 
-            <div class="field">
-
-                <label>
-                    Story title
-                </label>
-
-                <input
-                    id="storyTitle"
-                    type="text"
-                    placeholder="The Tower Beyond the Clouds"
-                >
-
-            </div>
+        </section>
 
 
-            <!-- GENRE -->
+        <!-- STORY CREATOR -->
 
-            <div class="field">
+        <section class="creator">
 
-                <label>
-                    Genre
-                </label>
-
-                <select id="genre">
-
-                    <option value="Fantasy">
-                        Fantasy
-                    </option>
-
-                    <option value="Adventure">
-                        Adventure
-                    </option>
-
-                    <option value="Mystery">
-                        Mystery
-                    </option>
-
-                    <option value="Romance">
-                        Romance
-                    </option>
-
-                    <option value="Science Fiction">
-                        Science Fiction
-                    </option>
-
-                    <option value="Horror">
-                        Horror
-                    </option>
-
-                    <option value="Thriller">
-                        Thriller
-                    </option>
-
-                    <option value="Drama">
-                        Drama
-                    </option>
-
-                </select>
-
-            </div>
+            <div class="form-grid">
 
 
-            <!-- MOOD -->
+                <!-- STORY IDEA -->
 
-            <div class="field">
+                <div class="field full">
 
-                <label>
-                    Story mood
-                </label>
+                    <label>
+                        ✦ Your imagination
+                    </label>
 
-                <div class="choices">
+                    <textarea
+                        id="storyIdea"
+                        placeholder="A girl discovers an ancient tower hidden beyond the clouds..."
+                    ></textarea>
 
-                    <button class="choice selected"
+                    <span class="hint">
+                        Describe anything — a character, place, memory,
+                        dream or completely new idea.
+                    </span>
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <div class="field">
+
+                    <label>
+                        Story title
+                    </label>
+
+                    <input
+                        id="storyTitle"
+                        type="text"
+                        placeholder="The Tower Beyond the Clouds"
+                    >
+
+                </div>
+
+
+                <!-- GENRE -->
+
+                <div class="field">
+
+                    <label>
+                        Genre
+                    </label>
+
+                    <select id="genre">
+
+                        <option value="Fantasy">
+                            Fantasy
+                        </option>
+
+                        <option value="Adventure">
+                            Adventure
+                        </option>
+
+                        <option value="Mystery">
+                            Mystery
+                        </option>
+
+                        <option value="Romance">
+                            Romance
+                        </option>
+
+                        <option value="Science Fiction">
+                            Science Fiction
+                        </option>
+
+                        <option value="Horror">
+                            Horror
+                        </option>
+
+                        <option value="Thriller">
+                            Thriller
+                        </option>
+
+                        <option value="Drama">
+                            Drama
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MOOD -->
+
+                <div class="field">
+
+                    <label>
+                        Story mood
+                    </label>
+
+                    <div class="choices">
+
+                        <button
+                            type="button"
+                            class="choice selected"
                             data-group="mood"
-                            onclick="selectChoice(this)">
-                        ✨ Magical
-                    </button>
+                            data-value="Magical"
+                            onclick="selectChoice(this)"
+                        >
+                            ✨ Magical
+                        </button>
 
-                    <button class="choice"
+                        <button
+                            type="button"
+                            class="choice"
                             data-group="mood"
-                            onclick="selectChoice(this)">
-                        🌿 Peaceful
-                    </button>
+                            data-value="Peaceful"
+                            onclick="selectChoice(this)"
+                        >
+                            🌿 Peaceful
+                        </button>
 
-                    <button class="choice"
+                        <button
+                            type="button"
+                            class="choice"
                             data-group="mood"
-                            onclick="selectChoice(this)">
-                        🌙 Mysterious
-                    </button>
+                            data-value="Mysterious"
+                            onclick="selectChoice(this)"
+                        >
+                            🌙 Mysterious
+                        </button>
 
-                    <button class="choice"
+                        <button
+                            type="button"
+                            class="choice"
                             data-group="mood"
-                            onclick="selectChoice(this)">
-                        ❤️ Emotional
-                    </button>
+                            data-value="Emotional"
+                            onclick="selectChoice(this)"
+                        >
+                            ❤️ Emotional
+                        </button>
 
-                    <button class="choice"
+                        <button
+                            type="button"
+                            class="choice"
                             data-group="mood"
-                            onclick="selectChoice(this)">
-                        ⚔️ Epic
-                    </button>
+                            data-value="Epic"
+                            onclick="selectChoice(this)"
+                        >
+                            ⚔️ Epic
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LENGTH -->
+
+                <div class="field">
+
+                    <label>
+                        Story length
+                    </label>
+
+                    <select id="length">
+
+                        <option value="Short">
+                            Short Story
+                        </option>
+
+                        <option value="Medium">
+                            Medium Story
+                        </option>
+
+                        <option value="Long">
+                            Long Story
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CHARACTER -->
+
+                <div class="field">
+
+                    <label>
+                        Main character
+                    </label>
+
+                    <input
+                        id="character"
+                        type="text"
+                        placeholder="A curious young astronomer"
+                    >
+
+                </div>
+
+
+                <!-- SETTING -->
+
+                <div class="field">
+
+                    <label>
+                        Story setting
+                    </label>
+
+                    <input
+                        id="setting"
+                        type="text"
+                        placeholder="A forgotten kingdom above the clouds"
+                    >
 
                 </div>
 
             </div>
 
 
-            <!-- LENGTH -->
-
-            <div class="field">
-
-                <label>
-                    Story length
-                </label>
-
-                <select id="length">
-
-                    <option value="Short">
-                        Short Story
-                    </option>
-
-                    <option value="Medium">
-                        Medium Story
-                    </option>
-
-                    <option value="Long">
-                        Long Story
-                    </option>
-
-                </select>
-
-            </div>
+            <div class="divider"></div>
 
 
-            <!-- CHARACTER -->
+            <!-- GENERATE -->
 
-            <div class="field">
+            <div class="generate-area">
 
-                <label>
-                    Main character
-                </label>
-
-                <input
-                    id="character"
-                    type="text"
-                    placeholder="A curious young astronomer"
+                <button
+                    class="generate-btn"
+                    id="generateBtn"
+                    onclick="generateStory()"
                 >
 
-            </div>
+                    <span class="generate-icon">
+                        ✨
+                    </span>
+
+                    Create My Story
+
+                </button>
 
 
-            <!-- SETTING -->
-
-            <div class="field">
-
-                <label>
-                    Story setting
-                </label>
-
-                <input
-                    id="setting"
-                    type="text"
-                    placeholder="A forgotten kingdom above the clouds"
+                <div
+                    class="loading"
+                    id="loading"
                 >
 
+                    <span class="spinner"></span>
+
+                    STORY AI is bringing your imagination to life...
+
+                </div>
+
+
+                <div
+                    class="error"
+                    id="error"
+                ></div>
+
             </div>
 
 
-        </div>
-
-
-        <div class="divider"></div>
-
-
-        <!-- =========================
-             GENERATE
-        ========================= -->
-
-        <div class="generate-area">
-
-            <button
-                class="generate-btn"
-                id="generateBtn"
-                onclick="generateStory()">
-
-                <span class="generate-icon">
-                    ✨
-                </span>
-
-                Create My Story
-
-            </button>
-
+            <!-- RESULT -->
 
             <div
-                class="loading"
-                id="loading">
+                class="result"
+                id="result"
+            >
 
-                <span class="spinner"></span>
+                <div class="result-label">
+                    Your story
+                </div>
 
-                STORY AI is bringing your imagination to life...
+                <h2 id="resultTitle">
+                    Your Story
+                </h2>
+
+                <div id="storyOutput"></div>
 
             </div>
 
-        </div>
+        </section>
+
+    </main>
 
 
-        <!-- =========================
-             RESULT
-        ========================= -->
+    <script>
 
-        <div
-            class="result"
-            id="result">
+        /* =========================
+           MOOD SELECTION
+        ========================= */
 
-            <div class="result-label">
-                Your story
-            </div>
+        function selectChoice(button) {
 
-            <h2 id="resultTitle">
-                Your Story
-            </h2>
+            const group = button.dataset.group;
 
-            <div id="storyOutput"></div>
+            document
+                .querySelectorAll(
+                    '.choice[data-group="' + group + '"]'
+                )
+                .forEach(function(item) {
 
-        </div>
+                    item.classList.remove("selected");
 
-    </section>
+                });
 
-</main>
-
-
-<script>
-
-    /* =========================
-       CHOICE BUTTONS
-    ========================= */
-
-    function selectChoice(button) {
-
-        const group = button.dataset.group;
-
-        document
-            .querySelectorAll(
-                `.choice[data-group="${group}"]`
-            )
-            .forEach(item => {
-                item.classList.remove("selected");
-            });
-
-        button.classList.add("selected");
-    }
-
-
-    /* =========================
-       GENERATE STORY
-    ========================= */
-
-    async function generateStory() {
-
-        const idea =
-            document.getElementById("storyIdea").value.trim();
-
-        const title =
-            document.getElementById("storyTitle").value.trim();
-
-        const genre =
-            document.getElementById("genre").value;
-
-        const length =
-            document.getElementById("length").value;
-
-        const character =
-            document.getElementById("character").value.trim();
-
-        const setting =
-            document.getElementById("setting").value.trim();
-
-        const selectedMood =
-            document.querySelector(
-                '.choice[data-group="mood"].selected'
-            );
-
-        const mood =
-            selectedMood
-                ? selectedMood.innerText
-                : "Magical";
-
-
-        if (!idea) {
-
-            alert(
-                "Tell STORY AI what you are imagining first ✨"
-            );
-
-            return;
+            button.classList.add("selected");
 
         }
 
 
-        const button =
-            document.getElementById("generateBtn");
+        /* =========================
+           GENERATE STORY
+        ========================= */
 
-        const loading =
-            document.getElementById("loading");
+        async function generateStory() {
 
-        const result =
-            document.getElementById("result");
-
-
-        button.disabled = true;
-
-        loading.classList.add("active");
-
-        result.classList.remove("show");
+            const idea =
+                document
+                    .getElementById("storyIdea")
+                    .value
+                    .trim();
 
 
-        /*
-         * CONNECT TO YOUR FLASK BACKEND
-         *
-         * Change /generate-story if your
-         * Flask endpoint has another name.
-         */
-
-        try {
-
-            const response = await fetch(
-                "/generate-story",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-
-                        idea: idea,
-
-                        title: title,
-
-                        genre: genre,
-
-                        mood: mood,
-
-                        length: length,
-
-                        character: character,
-
-                        setting: setting
-
-                    })
-
-                }
-            );
+            const title =
+                document
+                    .getElementById("storyTitle")
+                    .value
+                    .trim();
 
 
-            if (!response.ok) {
+            const genre =
+                document
+                    .getElementById("genre")
+                    .value;
 
-                throw new Error(
-                    "Story generation failed"
+
+            const length =
+                document
+                    .getElementById("length")
+                    .value;
+
+
+            const character =
+                document
+                    .getElementById("character")
+                    .value
+                    .trim();
+
+
+            const setting =
+                document
+                    .getElementById("setting")
+                    .value
+                    .trim();
+
+
+            const selectedMood =
+                document.querySelector(
+                    '.choice[data-group="mood"].selected'
                 );
+
+
+            const mood =
+                selectedMood
+                    ? selectedMood.dataset.value
+                    : "Magical";
+
+
+            /* -------------------------
+               VALIDATION
+            ------------------------- */
+
+            if (!idea) {
+
+                showError(
+                    "Tell STORY AI what you are imagining first ✨"
+                );
+
+                return;
 
             }
 
 
-            const data =
-                await response.json();
+            /* -------------------------
+               UI
+            ------------------------- */
+
+            const button =
+                document.getElementById(
+                    "generateBtn"
+                );
 
 
-            document.getElementById(
-                "resultTitle"
-            ).innerText =
-                data.title || title || "Your Story";
+            const loading =
+                document.getElementById(
+                    "loading"
+                );
 
 
-            document.getElementById(
-                "storyOutput"
-            ).innerText =
-                data.story || data.generated_story || "";
+            const result =
+                document.getElementById(
+                    "result"
+                );
 
 
-            result.classList.add("show");
+            hideError();
+
+            button.disabled = true;
+
+            loading.classList.add("active");
+
+            result.classList.remove("show");
 
 
-            result.scrollIntoView({
-                behavior: "smooth"
-            });
+            /* -------------------------
+               SEND TO FLASK
+            ------------------------- */
 
+            try {
+
+                const response = await fetch(
+                    "/api/generate-story",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            idea: idea,
+
+                            title: title,
+
+                            genre: genre,
+
+                            mood: mood,
+
+                            length: length,
+
+                            character: character,
+
+                            setting: setting
+
+                        })
+
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                /* -------------------------
+                   BACKEND ERROR
+                ------------------------- */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Story generation failed."
+                    );
+
+                }
+
+
+                /* -------------------------
+                   DISPLAY STORY
+                ------------------------- */
+
+                document.getElementById(
+                    "resultTitle"
+                ).innerText =
+                    data.title ||
+                    title ||
+                    "Your Story";
+
+
+                document.getElementById(
+                    "storyOutput"
+                ).innerText =
+                    data.story ||
+                    "No story was returned.";
+
+
+                result.classList.add("show");
+
+
+                setTimeout(function() {
+
+                    result.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }, 100);
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "STORY AI ERROR:",
+                    error
+                );
+
+                showError(
+                    error.message ||
+                    "Something went wrong while creating your story."
+                );
+
+            }
+
+            finally {
+
+                button.disabled = false;
+
+                loading.classList.remove("active");
+
+            }
 
         }
 
-        catch (error) {
 
-            console.error(error);
+        /* =========================
+           ERROR MESSAGE
+        ========================= */
 
-            /*
-             * TEMPORARY FALLBACK
-             *
-             * Remove this when your Flask
-             * endpoint is connected.
-             */
+        function showError(message) {
 
-            document.getElementById(
-                "resultTitle"
-            ).innerText =
-                title || "The Beginning";
+            const error =
+                document.getElementById("error");
 
+            error.innerText = message;
 
-            document.getElementById(
-                "storyOutput"
-            ).innerText =
-                `Your story begins in ${setting || "a world beyond imagination"}.
-
-${character || "A mysterious traveler"} stood at the edge of a world no ordinary map could describe.
-
-The idea you gave STORY AI was:
-
-"${idea}"
-
-This is where your story begins...
-
-Your imagination has opened the door.
-What happens next is yours to discover. ✨`;
-
-
-            result.classList.add("show");
-
-
-            result.scrollIntoView({
-                behavior: "smooth"
-            });
+            error.classList.add("show");
 
         }
 
-        finally {
 
-            button.disabled = false;
+        function hideError() {
 
-            loading.classList.remove("active");
+            const error =
+                document.getElementById("error");
+
+            error.innerText = "";
+
+            error.classList.remove("show");
 
         }
 
-    }
-
-</script>
+    </script>
 
 </body>
+
 </html>
+```
