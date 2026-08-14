@@ -1,113 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Story Studio</title>
+    <title>STORY AI — Turn Imagination Into Reality</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f7fbf5;
+            color: #123c28;
+            overflow: hidden;
+        }
+
+        /* =========================
+           APP CONTAINER
+        ========================= */
+
+        .app {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 10%, #ffffff 0%, transparent 30%),
+                linear-gradient(135deg, #f9fcf7, #e8f4e7);
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateX(60px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease,
+                visibility 0.7s;
+        }
+
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .page-content {
+            width: min(1180px, 92%);
+            height: min(720px, 90vh);
+
+            display: grid;
+            grid-template-columns: 45% 55%;
+
+            background: rgba(255,255,255,0.72);
+
+            border: 1px solid rgba(35,105,65,0.12);
+
+            border-radius: 32px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 80px rgba(31, 91, 52, 0.12),
+                inset 0 0 40px rgba(255,255,255,0.6);
+
+            backdrop-filter: blur(10px);
+        }
+
+        /* =========================
+           TEXT SIDE
+        ========================= */
+
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 65px;
+
+            position: relative;
+            z-index: 5;
+        }
+
+        .small-title {
+            color: #3a8f52;
+            font-size: 15px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(55px, 6vw, 82px);
+
+            line-height: 0.9;
+
+            color: #12472c;
+
+            margin-bottom: 28px;
+
+            font-weight: 600;
+        }
+
+        h2 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(38px, 4vw, 58px);
+
+            line-height: 1.05;
+
+            color: #174b30;
+
+            margin-bottom: 25px;
+        }
+
+        .gold-line {
+            width: 75px;
+            height: 3px;
+
+            background: #68a873;
+
+            margin-bottom: 28px;
+
+            border-radius: 20px;
+        }
+
+        .description {
+            color: #53655a;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            max-width: 470px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .next-btn {
+            margin-top: 42px;
+
+            width: 190px;
+
+            padding: 16px 25px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: #278c47;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            box-shadow:
+                0 10px 25px rgba(39,140,71,0.2);
+        }
+
+        .next-btn:hover {
+            background: #176f35;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px rgba(39,140,71,0.3);
+        }
+
+        .arrow {
+            margin-left: 15px;
+            font-size: 20px;
+        }
+
+        /* =========================
+           IMAGE SIDE
+        ========================= */
+
+        .image-section {
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(230,246,228,0.2),
+                    rgba(21,91,43,0.1)
+                );
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 8s ease;
+        }
+
+        .page.active .image-section img {
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           PAGE 1 IMAGE
+        ========================= */
+
+        .page1-image {
+            background:
+                linear-gradient(
+                    rgba(221,244,219,0.15),
+                    rgba(16,82,41,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1511108690759-009324a90311?auto=format&fit=crop&w=1400&q=85")
+                center/cover;
+        }
+
+        /* =========================
+           PAGE 2 IMAGE
+        ========================= */
+
+        .page2-image {
+            background:
+                linear-gradient(
+                    rgba(221,244,219,0.1),
+                    rgba(16,82,41,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1455885666463-17a9d2a4d6d3?auto=format&fit=crop&w=1400&q=85")
+                center/cover;
+        }
+
+        /* =========================
+           PAGE 3 IMAGE
+        ========================= */
+
+        .page3-image {
+            background:
+                linear-gradient(
+                    rgba(221,244,219,0.1),
+                    rgba(16,82,41,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85")
+                center/cover;
+        }
+
+        /* =========================
+           PAGE 4 IMAGE
+        ========================= */
+
+        .page4-image {
+            background:
+                linear-gradient(
+                    rgba(221,244,219,0.1),
+                    rgba(16,82,41,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=85")
+                center/cover;
+        }
+
+        /* =========================
+           PAGE NUMBER
+        ========================= */
+
+        .page-number {
+            position: absolute;
+
+            top: 28px;
+            right: 30px;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #176d3c;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            z-index: 10;
+        }
+
+        /* =========================
+           DECORATION
+        ========================= */
+
+        .leaf {
+            position: absolute;
+
+            color: #7bb77f;
+
+            font-size: 70px;
+
+            opacity: 0.25;
+
+            pointer-events: none;
+        }
+
+        .leaf.one {
+            top: 30px;
+            left: 20px;
+            transform: rotate(-25deg);
+        }
+
+        .leaf.two {
+            bottom: 25px;
+            right: 20px;
+            transform: rotate(35deg);
+        }
+
+        /* =========================
+           PAGINATION
+        ========================= */
+
+        .pagination {
+            position: fixed;
+
+            bottom: 35px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+            gap: 10px;
+
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            border: 1px solid #39874e;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 28px;
+
+            border-radius: 20px;
+
+            background: #2f8c49;
+        }
+
+        /* =========================
+           FINAL PAGE
+        ========================= */
+
+        .final-page .text-section {
+            align-items: center;
+            text-align: center;
+        }
+
+        .final-page .description {
+            max-width: 520px;
+        }
+
+        .begin-btn {
+            width: 230px;
+
+            padding: 17px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: #278c47;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 35px;
+
+            transition: 0.3s;
+        }
+
+        .begin-btn:hover {
+            transform: scale(1.04);
+
+            background: #176f35;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 850px) {
+
+            body {
+                overflow: auto;
+            }
+
+            .app {
+                min-height: 100vh;
+                height: auto;
+                padding: 25px 0 80px;
+            }
+
+            .page {
+                position: relative;
+
+                display: none;
+
+                inset: auto;
+
+                min-height: calc(100vh - 100px);
+
+                transform: none;
+
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+            .page.active {
+                display: flex;
+            }
+
+            .page-content {
+                height: auto;
+
+                min-height: 80vh;
+
+                grid-template-columns: 1fr;
+
+                width: 90%;
+
+                border-radius: 25px;
+            }
+
+            .text-section {
+                padding: 45px 30px;
+                order: 1;
+            }
+
+            .image-section {
+                height: 380px;
+                order: 2;
+            }
+
+            h1 {
+                font-size: 58px;
+            }
+
+            h2 {
+                font-size: 43px;
+            }
+
+            .pagination {
+                bottom: 20px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="app">
 
-        <header>
-            <h1>🎬 AI Story Studio</h1>
-            <p>Turn your imagination into an immersive story.</p>
-        </header>
+    <!-- ======================================
+         PAGE 1
+    ======================================= -->
 
-        <section class="card">
+    <section class="page active" id="page1">
 
-            <h2>💡 Create Your Story</h2>
+        <div class="page-content">
 
-            <label>Story Idea</label>
+            <div class="text-section">
 
-            <textarea
-                id="idea"
-                placeholder="Example: A scientist discovers that dreams are memories from the future..."
-            ></textarea>
-
-            <div class="grid">
-
-                <div>
-                    <label>Genre</label>
-
-                    <select id="genre">
-                        <option>Science Fiction</option>
-                        <option>Fantasy</option>
-                        <option>Mystery</option>
-                        <option>Thriller</option>
-                        <option>Horror</option>
-                        <option>Romance</option>
-                        <option>Adventure</option>
-                        <option>Drama</option>
-                    </select>
+                <div class="small-title">
+                    Welcome to
                 </div>
 
-                <div>
-                    <label>Tone</label>
+                <h1>
+                    STORY<br>
+                    AI
+                </h1>
 
-                    <select id="tone">
-                        <option>Cinematic</option>
-                        <option>Dark</option>
-                        <option>Emotional</option>
-                        <option>Suspenseful</option>
-                        <option>Funny</option>
-                        <option>Inspirational</option>
-                        <option>Mysterious</option>
-                    </select>
-                </div>
+                <div class="gold-line"></div>
 
-            </div>
+                <h2>
+                    Turn imagination<br>
+                    into reality.
+                </h2>
 
-            <button id="generateBtn">
-                ✨ Generate Story
-            </button>
-
-        </section>
-
-
-        <section class="card story-section">
-
-            <h2>📖 Your Story</h2>
-
-            <div id="loading" class="hidden">
-                Creating your story...
-            </div>
-
-            <div id="storyOutput">
-
-                <p class="placeholder">
-                    Your generated story will appear here.
+                <p class="description">
+                    Become the writer of your own dreams
+                    and indulge in an immersive world where
+                    every thought can become a story.
                 </p>
 
-            </div>
-
-            <div class="actions">
-
-                <button id="continueBtn">
-                    ➡️ Continue Story
-                </button>
-
-                <button id="rewriteBtn">
-                    ✍️ Rewrite
-                </button>
-
-                <button id="endingBtn">
-                    🔀 Alternative Ending
+                <button class="next-btn" onclick="nextPage()">
+                    Begin Journey
+                    <span class="arrow">→</span>
                 </button>
 
             </div>
 
-        </section>
+            <div class="image-section page1-image">
+
+                <div class="page-number">
+                    01
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         PAGE 2
+    ======================================= -->
+
+    <section class="page" id="page2">
+
+        <div class="page-content">
+
+            <div class="text-section">
+
+                <div class="small-title">
+                    Your imagination
+                </div>
+
+                <h2>
+                    Your Story,<br>
+                    Your World.
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <p class="description">
+                    Have a character in your mind?
+                    A mysterious kingdom?
+                    A forgotten memory?
+
+                    <br><br>
+
+                    Give your ideas a voice and let
+                    STORY AI transform them into
+                    stories that feel uniquely yours.
+                </p>
+
+                <button class="next-btn" onclick="nextPage()">
+                    Create My Story
+                    <span class="arrow">→</span>
+                </button>
+
+            </div>
+
+            <div class="image-section page2-image">
+
+                <div class="page-number">
+                    02
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         PAGE 3
+    ======================================= -->
+
+    <section class="page" id="page3">
+
+        <div class="page-content">
+
+            <div class="text-section">
+
+                <div class="small-title">
+                    AI storytelling
+                </div>
+
+                <h2>
+                    AI That Inspires
+                    Creativity.
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <p class="description">
+                    Stuck in the middle of your story?
+
+                    <br><br>
+
+                    Let AI help you discover unexpected
+                    characters, dramatic twists, magical
+                    worlds and unforgettable endings.
+
+                    <br><br>
+
+                    You imagine.
+                    STORY AI helps you create.
+                </p>
+
+                <button class="next-btn" onclick="nextPage()">
+                    Explore Possibilities
+                    <span class="arrow">→</span>
+                </button>
+
+            </div>
+
+            <div class="image-section page3-image">
+
+                <div class="page-number">
+                    03
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         PAGE 4
+    ======================================= -->
+
+    <section class="page final-page" id="page4">
+
+        <div class="page-content">
+
+            <div class="text-section">
+
+                <div class="small-title">
+                    Your adventure begins
+                </div>
+
+                <h2>
+                    Step Into<br>
+                    Immersive Worlds.
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <p class="description">
+                    Leave the ordinary behind.
+
+                    <br><br>
+
+                    Explore stories, create characters,
+                    travel through imaginary kingdoms
+                    and experience worlds that exist
+                    only because you imagined them.
+
+                    <br><br>
+
+                    <strong>
+                        Your story is waiting.
+                    </strong>
+                </p>
+
+                <button class="begin-btn" onclick="startStory()">
+                    Let's Begin ✨
+                </button>
+
+            </div>
+
+            <div class="image-section page4-image">
+
+                <div class="page-number">
+                    04
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         PAGINATION
+    ======================================= -->
+
+    <div class="pagination">
+
+        <span class="dot active" onclick="goToPage(1)"></span>
+
+        <span class="dot" onclick="goToPage(2)"></span>
+
+        <span class="dot" onclick="goToPage(3)"></span>
+
+        <span class="dot" onclick="goToPage(4)"></span>
 
     </div>
 
-    <script src="script.js"></script>
+</div>
+
+
+<script>
+
+    let currentPage = 1;
+
+    function goToPage(pageNumber) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+                page.classList.remove("active");
+            });
+
+        document
+            .getElementById("page" + pageNumber)
+            .classList.add("active");
+
+        document
+            .querySelectorAll(".dot")
+            .forEach(dot => {
+                dot.classList.remove("active");
+            });
+
+        document
+            .querySelectorAll(".dot")[pageNumber - 1]
+            .classList.add("active");
+
+        currentPage = pageNumber;
+    }
+
+
+    function nextPage() {
+
+        if (currentPage < 4) {
+            goToPage(currentPage + 1);
+        }
+
+    }
+
+
+    function startStory() {
+
+        /*
+         * CHANGE THIS TO YOUR ACTUAL
+         * STORY CREATION PAGE.
+         *
+         * Example:
+         *
+         * window.location.href = "create.html";
+         */
+
+        window.location.href = "create.html";
+
+    }
+
+
+    /* Keyboard navigation */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "ArrowRight") {
+
+            if (currentPage < 4) {
+                nextPage();
+            }
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+
+        }
+
+    });
+
+</script>
 
 </body>
-
 </html>
