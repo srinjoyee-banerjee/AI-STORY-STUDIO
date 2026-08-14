@@ -1,607 +1,1067 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>STORY AI — Create Your Story</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background: #f5faf3;
-            color: #183e29;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           BACKGROUND
-        ========================= */
-
-        .background {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-
-            background:
-                radial-gradient(
-                    circle at 10% 10%,
-                    rgba(183, 220, 183, 0.45),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 90% 80%,
-                    rgba(188, 225, 192, 0.4),
-                    transparent 30%
-                ),
-                linear-gradient(
-                    135deg,
-                    #fbfdf9,
-                    #edf7eb
-                );
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            height: 82px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 6%;
-
-            border-bottom: 1px solid rgba(30, 100, 55, 0.1);
-
-            background: rgba(255, 255, 255, 0.72);
-
-            backdrop-filter: blur(15px);
-
-            position: sticky;
-            top: 0;
-
-            z-index: 20;
-        }
-
-        .logo {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: #14572f;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #52a363;
-        }
-
-        .header-text {
-            color: #6a7b6d;
-            font-size: 14px;
-        }
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        main {
-            width: min(1150px, 92%);
-            margin: 55px auto 80px;
-        }
+<meta charset="UTF-8">
 
-        .intro {
-            text-align: center;
-            margin-bottom: 45px;
-        }
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-        .intro-label {
-            color: #429152;
-            font-size: 13px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
+<title>STORY AI — Story Studio</title>
 
-        .intro h1 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: clamp(48px, 6vw, 72px);
-            color: #164b2d;
-            line-height: 1;
-        }
-
-        .intro p {
-            max-width: 650px;
-            margin: 20px auto 0;
-            color: #68776b;
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
-        /* =========================
-           CREATOR CARD
-        ========================= */
-
-        .creator {
-            background: rgba(255, 255, 255, 0.84);
 
-            border: 1px solid rgba(36, 105, 57, 0.1);
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-            border-radius: 30px;
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
-            padding: 45px;
+<link
+href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+rel="stylesheet">
 
-            box-shadow:
-                0 25px 70px rgba(36, 95, 51, 0.1);
 
-            backdrop-filter: blur(15px);
-        }
+<style>
 
-        /* =========================
-           FORM
-        ========================= */
+/* =====================================================
+   RESET
+===================================================== */
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .field {
-            display: flex;
-            flex-direction: column;
-        }
+html,body{
+    min-height:100%;
+}
 
-        .field.full {
-            grid-column: 1 / -1;
-        }
+body{
 
-        label {
-            color: #245c38;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #25233c,
+            transparent 30%
+        ),
 
-        .hint {
-            font-size: 12px;
-            color: #879489;
-            margin-top: 7px;
-        }
+        radial-gradient(
+            circle at 85% 75%,
+            #30203d,
+            transparent 28%
+        ),
 
-        input,
-        textarea,
-        select {
-            width: 100%;
+        #080910;
 
-            border: 1px solid #d7e5d7;
+    color:#fff;
 
-            background: #fbfdfb;
+    font-family:"Inter",sans-serif;
 
-            border-radius: 14px;
+    min-height:100vh;
 
-            padding: 15px 17px;
+    overflow-x:hidden;
+}
 
-            font-family: "Inter", sans-serif;
 
-            font-size: 15px;
+/* =====================================================
+   AMBIENT BACKGROUND
+===================================================== */
 
-            color: #234b31;
+.ambient{
 
-            outline: none;
+    position:fixed;
 
-            transition: 0.25s;
-        }
+    inset:0;
 
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #4b9c5b;
+    pointer-events:none;
 
-            box-shadow:
-                0 0 0 4px rgba(75, 156, 91, 0.1);
+    overflow:hidden;
 
-            background: white;
-        }
+    z-index:-1;
 
-        textarea {
-            min-height: 190px;
-            resize: vertical;
-            line-height: 1.7;
-        }
+}
 
-        /* =========================
-           CHOICES
-        ========================= */
 
-        .choices {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+.ambient::before{
 
-        .choice {
-            padding: 11px 17px;
+    content:"";
 
-            border-radius: 30px;
+    position:absolute;
 
-            border: 1px solid #d5e5d6;
+    width:700px;
+    height:700px;
 
-            background: #f9fcf8;
+    border-radius:50%;
 
-            color: #52705b;
+    background:
+        radial-gradient(
+            circle,
+            rgba(158,106,207,.16),
+            transparent 65%
+        );
 
-            cursor: pointer;
+    left:-250px;
+    top:-250px;
 
-            transition: 0.25s;
+    animation:
+        ambientFloat 10s ease-in-out infinite;
 
-            font-size: 13px;
-        }
+}
 
-        .choice:hover {
-            border-color: #54a263;
-            color: #27713c;
-        }
 
-        .choice.selected {
-            background: #2f8d49;
-            color: white;
-            border-color: #2f8d49;
+.ambient::after{
 
-            box-shadow:
-                0 7px 18px rgba(47, 141, 73, 0.2);
-        }
+    content:"";
 
-        /* =========================
-           DIVIDER
-        ========================= */
+    position:absolute;
 
-        .divider {
-            height: 1px;
-            background: #e1ebe1;
-            margin: 38px 0;
-        }
+    width:650px;
+    height:650px;
 
-        /* =========================
-           GENERATE
-        ========================= */
+    border-radius:50%;
 
-        .generate-area {
-            text-align: center;
-            padding-top: 5px;
-        }
+    background:
+        radial-gradient(
+            circle,
+            rgba(219,178,94,.08),
+            transparent 65%
+        );
 
-        .generate-btn {
-            border: none;
+    right:-200px;
+    bottom:-200px;
 
-            background: #268746;
+    animation:
+        ambientFloat 12s ease-in-out infinite reverse;
 
-            color: white;
+}
 
-            padding: 17px 45px;
+@keyframes ambientFloat{
 
-            border-radius: 50px;
+    0%,100%{
+        transform:translate(0,0);
+    }
 
-            font-size: 16px;
+    50%{
+        transform:translate(40px,-30px);
+    }
 
-            font-weight: 600;
+}
 
-            cursor: pointer;
 
-            box-shadow:
-                0 12px 28px rgba(38, 135, 70, 0.22);
+/* =====================================================
+   TOP BAR
+===================================================== */
 
-            transition: all 0.3s ease;
-        }
+.topbar{
 
-        .generate-btn:hover {
-            background: #176c35;
+    height:82px;
 
-            transform: translateY(-3px);
+    padding:0 5%;
 
-            box-shadow:
-                0 17px 32px rgba(38, 135, 70, 0.28);
-        }
+    display:flex;
 
-        .generate-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+    align-items:center;
 
-        .generate-icon {
-            margin-right: 9px;
-        }
+    justify-content:space-between;
 
-        /* =========================
-           LOADING
-        ========================= */
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 
-        .loading {
-            display: none;
+    background:
+        rgba(7,8,15,.6);
 
-            text-align: center;
+    backdrop-filter:blur(20px);
 
-            margin-top: 25px;
+    position:sticky;
 
-            color: #4e7258;
+    top:0;
 
-            font-size: 14px;
-        }
+    z-index:20;
 
-        .loading.active {
-            display: block;
-        }
+}
 
-        .spinner {
-            width: 20px;
-            height: 20px;
 
-            border: 2px solid #d2e5d4;
+.logo{
 
-            border-top-color: #328c4b;
+    font-family:"Cinzel",serif;
 
-            border-radius: 50%;
+    font-size:21px;
 
-            display: inline-block;
+    letter-spacing:4px;
 
-            vertical-align: middle;
+}
 
-            margin-right: 8px;
+.logo span{
+    color:#dcb66f;
+}
 
-            animation: spin 0.8s linear infinite;
-        }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+.back{
 
-        /* =========================
-           RESULT
-        ========================= */
+    border:
+        1px solid rgba(255,255,255,.18);
 
-        .result {
-            display: none;
+    background:
+        rgba(255,255,255,.04);
 
-            margin-top: 40px;
+    color:#bbb;
 
-            padding: 40px;
+    padding:10px 18px;
 
-            border-radius: 25px;
+    border-radius:30px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f9fcf8,
-                    #edf7ed
-                );
+    cursor:pointer;
 
-            border: 1px solid #d7e7d8;
-        }
+    transition:.3s;
 
-        .result.show {
-            display: block;
-            animation: appear 0.6s ease;
-        }
+}
 
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
+.back:hover{
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    background:white;
 
-        .result-label {
-            font-size: 12px;
+    color:#111;
 
-            letter-spacing: 3px;
+}
 
-            color: #499558;
 
-            text-transform: uppercase;
+/* =====================================================
+   MAIN
+===================================================== */
 
-            margin-bottom: 10px;
-        }
+.wrapper{
 
-        .result h2 {
-            font-family: "Cormorant Garamond", serif;
+    width:min(1250px,92%);
 
-            color: #174a2d;
+    margin:0 auto;
 
-            font-size: 42px;
+    padding:65px 0 100px;
 
-            margin-bottom: 20px;
-        }
+}
 
-        #storyOutput {
-            color: #405a48;
 
-            line-height: 1.9;
+.heading{
 
-            white-space: pre-wrap;
+    text-align:center;
 
-            font-size: 16px;
-        }
+    margin-bottom:50px;
 
-        /* =========================
-           ERROR
-        ========================= */
+}
 
-        .error {
-            display: none;
 
-            margin-top: 20px;
+.heading .eyebrow{
 
-            padding: 14px 18px;
+    color:#d7b36e;
 
-            border-radius: 12px;
+    font-size:10px;
 
-            background: #fff3f0;
+    letter-spacing:6px;
 
-            border: 1px solid #f0c8bf;
+    margin-bottom:15px;
 
-            color: #a33d2d;
+}
 
-            font-size: 14px;
 
-            text-align: center;
-        }
+.heading h1{
 
-        .error.show {
-            display: block;
-        }
+    font-family:"Cinzel",serif;
 
-        /* =========================
-           MOBILE
-        ========================= */
+    font-size:
+        clamp(45px,6vw,78px);
 
-        @media (max-width: 750px) {
+    font-weight:500;
 
-            header {
-                padding: 0 5%;
-            }
+    line-height:.95;
 
-            .header-text {
-                display: none;
-            }
+}
 
-            main {
-                margin-top: 35px;
-            }
 
-            .creator {
-                padding: 28px 22px;
-            }
+.heading h1 span{
 
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
+    color:#dcb77b;
 
-            .field.full {
-                grid-column: auto;
-            }
+}
 
-            .intro h1 {
-                font-size: 52px;
-            }
 
-            .generate-btn {
-                width: 100%;
-            }
+.heading p{
 
-            .result {
-                padding: 28px 22px;
-            }
+    max-width:650px;
 
-            .result h2 {
-                font-size: 36px;
-            }
-        }
+    margin:22px auto 0;
 
-    </style>
+    color:#aaaeba;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   CREATOR LAYOUT
+===================================================== */
+
+.creator-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1.4fr .8fr;
+
+    gap:25px;
+
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.panel{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    border-radius:26px;
+
+    padding:35px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   FIELD
+===================================================== */
+
+.field{
+
+    margin-bottom:25px;
+
+}
+
+
+label{
+
+    display:block;
+
+    font-size:12px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    color:#c8c8d0;
+
+    margin-bottom:10px;
+
+}
+
+
+textarea,
+input,
+select{
+
+    width:100%;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(0,0,0,.25);
+
+    color:white;
+
+    border-radius:15px;
+
+    padding:15px 17px;
+
+    outline:none;
+
+    font-family:"Inter",sans-serif;
+
+    transition:.3s;
+
+}
+
+
+textarea{
+
+    min-height:220px;
+
+    resize:vertical;
+
+    line-height:1.7;
+
+}
+
+
+input,
+select{
+
+    height:52px;
+
+}
+
+
+textarea:focus,
+input:focus,
+select:focus{
+
+    border-color:#cda762;
+
+    box-shadow:
+        0 0 0 4px rgba(205,167,98,.08);
+
+}
+
+
+select option{
+
+    background:#151622;
+
+}
+
+
+/* =====================================================
+   TWO COLUMN FIELDS
+===================================================== */
+
+.two-fields{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+
+/* =====================================================
+   MOOD
+===================================================== */
+
+.moods{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+}
+
+
+.mood{
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:#aaa;
+
+    padding:10px 15px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.mood:hover{
+
+    border-color:#d4ae69;
+
+    color:white;
+
+}
+
+
+.mood.selected{
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcb66f,
+            #9f79c5
+        );
+
+    color:#111;
+
+    border-color:transparent;
+
+}
+
+
+/* =====================================================
+   RIGHT SIDE — STORY WORLD
+===================================================== */
+
+.world-panel{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:650px;
+
+}
+
+
+.world-image{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:.3;
+
+    filter:
+        saturate(.65)
+        contrast(1.1);
+
+}
+
+
+.world-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(7,8,15,.1),
+            rgba(7,8,15,.95)
+        );
+
+}
+
+
+.world-content{
+
+    position:relative;
+
+    z-index:5;
+
+    height:100%;
+
+    min-height:580px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+}
+
+
+.world-label{
+
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    color:#d8b574;
+
+    margin-bottom:15px;
+
+}
+
+
+.world-content h2{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:48px;
+
+    line-height:.9;
+
+    font-weight:500;
+
+}
+
+
+.world-content p{
+
+    color:#b9bbc5;
+
+    line-height:1.7;
+
+    margin-top:18px;
+
+}
+
+
+/* floating manuscript */
+
+.manuscript{
+
+    position:absolute;
+
+    width:170px;
+    height:220px;
+
+    right:25px;
+    top:30px;
+
+    background:
+        #e9dfc9;
+
+    color:#4b4030;
+
+    transform:
+        rotate(7deg);
+
+    padding:25px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.45);
+
+    animation:
+        manuscriptFloat 5s ease-in-out infinite;
+
+}
+
+
+.manuscript::before{
+
+    content:"✦";
+
+    display:block;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:25px;
+
+}
+
+
+@keyframes manuscriptFloat{
+
+    0%,100%{
+        transform:
+            rotate(7deg)
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            rotate(3deg)
+            translateY(-18px);
+    }
+
+}
+
+
+/* =====================================================
+   GENERATE BUTTON
+===================================================== */
+
+.generate-area{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+
+.generate{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e5c173,
+            #b486d3
+        );
+
+    color:#111;
+
+    padding:18px 45px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 15px 45px rgba(205,159,92,.2);
+
+    transition:.4s;
+
+}
+
+
+.generate:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 25px 65px rgba(211,167,104,.35);
+
+}
+
+
+.generate:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    display:none;
+
+    margin-top:20px;
+
+    color:#bbb;
+
+}
+
+
+.loading.show{
+
+    display:block;
+
+}
+
+
+.loader{
+
+    width:20px;
+    height:20px;
+
+    border:
+        2px solid rgba(255,255,255,.15);
+
+    border-top-color:#e2be72;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    vertical-align:middle;
+
+    margin-right:8px;
+
+    animation:
+        spin .8s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result{
+
+    display:none;
+
+    margin-top:40px;
+
+    padding:50px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(221,186,113,.08),
+            rgba(164,115,204,.08)
+        );
+
+    border:
+        1px solid rgba(220,188,117,.18);
+
+    animation:
+        resultAppear 1s ease;
+
+}
+
+
+.result.show{
+
+    display:block;
+
+}
+
+
+@keyframes resultAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.result-label{
+
+    color:#d9b36b;
+
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    margin-bottom:15px;
+
+}
+
+
+.result h2{
+
+    font-family:"Cinzel",serif;
+
+    font-size:
+        clamp(35px,5vw,65px);
+
+    font-weight:500;
+
+    margin-bottom:25px;
+
+}
+
+
+.story-output{
+
+    color:#d0d0d8;
+
+    line-height:2;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:21px;
+
+    white-space:pre-wrap;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px){
+
+    .creator-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .world-panel{
+
+        min-height:450px;
+
+    }
+
+    .world-content{
+
+        min-height:430px;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .topbar{
+
+        padding:0 20px;
+
+    }
+
+    .wrapper{
+
+        padding-top:45px;
+
+    }
+
+    .panel{
+
+        padding:23px;
+
+    }
+
+    .two-fields{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .manuscript{
+
+        width:120px;
+        height:160px;
+
+        font-size:11px;
+
+    }
+
+    .result{
+
+        padding:28px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
 
 <body>
 
-    <div class="background"></div>
+
+<div class="ambient"></div>
 
 
-    <!-- HEADER -->
+<header class="topbar">
 
-    <header>
+    <div class="logo">
+        STORY <span>AI</span>
+    </div>
 
-        <div class="logo">
-            STORY <span>AI</span>
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← THE LIBRARY
+    </button>
+
+</header>
+
+
+<main class="wrapper">
+
+
+    <section class="heading">
+
+        <div class="eyebrow">
+            THE STORY STUDIO
         </div>
 
-        <div class="header-text">
-            Your imagination. Your world. Your story.
-        </div>
+        <h1>
+            Write the world<br>
+            <span>you imagined.</span>
+        </h1>
 
-    </header>
+        <p>
+            There are no rules here.
+            Begin with a thought, a dream, a character,
+            a place — and let STORY AI build the world around it.
+        </p>
+
+    </section>
 
 
-    <!-- MAIN -->
+    <div class="creator-grid">
 
-    <main>
 
-        <section class="intro">
+        <!-- =================================================
+             LEFT — CREATOR
+        ================================================== -->
 
-            <div class="intro-label">
-                Begin Your Journey
+        <section class="panel">
+
+
+            <div class="field">
+
+                <label>
+                    Your imagination
+                </label>
+
+                <textarea
+                    id="storyIdea"
+                    placeholder="A girl discovers an ancient tower hidden beyond the clouds..."
+                ></textarea>
+
             </div>
 
-            <h1>
-                What will you imagine today?
-            </h1>
 
-            <p>
-                Give your imagination a beginning.
-                Tell us about the world you want to create,
-                and STORY AI will help bring it to life.
-            </p>
+            <div class="two-fields">
 
-        </section>
-
-
-        <!-- STORY CREATOR -->
-
-        <section class="creator">
-
-            <div class="form-grid">
-
-
-                <!-- STORY IDEA -->
-
-                <div class="field full">
-
-                    <label>
-                        ✦ Your imagination
-                    </label>
-
-                    <textarea
-                        id="storyIdea"
-                        placeholder="A girl discovers an ancient tower hidden beyond the clouds..."
-                    ></textarea>
-
-                    <span class="hint">
-                        Describe anything — a character, place, memory,
-                        dream or completely new idea.
-                    </span>
-
-                </div>
-
-
-                <!-- TITLE -->
 
                 <div class="field">
 
@@ -611,14 +1071,45 @@
 
                     <input
                         id="storyTitle"
-                        type="text"
                         placeholder="The Tower Beyond the Clouds"
                     >
 
                 </div>
 
 
-                <!-- GENRE -->
+                <div class="field">
+
+                    <label>
+                        Main character
+                    </label>
+
+                    <input
+                        id="character"
+                        placeholder="A curious young astronomer"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <div class="two-fields">
+
+
+                <div class="field">
+
+                    <label>
+                        Story setting
+                    </label>
+
+                    <input
+                        id="setting"
+                        placeholder="A forgotten kingdom above the clouds"
+                    >
+
+                </div>
+
 
                 <div class="field">
 
@@ -664,73 +1155,11 @@
 
                 </div>
 
-
-                <!-- MOOD -->
-
-                <div class="field">
-
-                    <label>
-                        Story mood
-                    </label>
-
-                    <div class="choices">
-
-                        <button
-                            type="button"
-                            class="choice selected"
-                            data-group="mood"
-                            data-value="Magical"
-                            onclick="selectChoice(this)"
-                        >
-                            ✨ Magical
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice"
-                            data-group="mood"
-                            data-value="Peaceful"
-                            onclick="selectChoice(this)"
-                        >
-                            🌿 Peaceful
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice"
-                            data-group="mood"
-                            data-value="Mysterious"
-                            onclick="selectChoice(this)"
-                        >
-                            🌙 Mysterious
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice"
-                            data-group="mood"
-                            data-value="Emotional"
-                            onclick="selectChoice(this)"
-                        >
-                            ❤️ Emotional
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice"
-                            data-group="mood"
-                            data-value="Epic"
-                            onclick="selectChoice(this)"
-                        >
-                            ⚔️ Epic
-                        </button>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <!-- LENGTH -->
+            <div class="two-fields">
+
 
                 <div class="field">
 
@@ -757,61 +1186,70 @@
                 </div>
 
 
-                <!-- CHARACTER -->
-
                 <div class="field">
 
                     <label>
-                        Main character
+                        Mood
                     </label>
 
-                    <input
-                        id="character"
-                        type="text"
-                        placeholder="A curious young astronomer"
-                    >
+                    <div class="moods">
+
+                        <button
+                            class="mood selected"
+                            data-mood="Magical"
+                            onclick="selectMood(this)"
+                        >
+                            ✨ Magical
+                        </button>
+
+                        <button
+                            class="mood"
+                            data-mood="Peaceful"
+                            onclick="selectMood(this)"
+                        >
+                            🌿 Peaceful
+                        </button>
+
+                        <button
+                            class="mood"
+                            data-mood="Mysterious"
+                            onclick="selectMood(this)"
+                        >
+                            🌙 Mysterious
+                        </button>
+
+                        <button
+                            class="mood"
+                            data-mood="Emotional"
+                            onclick="selectMood(this)"
+                        >
+                            ♥ Emotional
+                        </button>
+
+                        <button
+                            class="mood"
+                            data-mood="Epic"
+                            onclick="selectMood(this)"
+                        >
+                            ⚔ Epic
+                        </button>
+
+                    </div>
 
                 </div>
 
-
-                <!-- SETTING -->
-
-                <div class="field">
-
-                    <label>
-                        Story setting
-                    </label>
-
-                    <input
-                        id="setting"
-                        type="text"
-                        placeholder="A forgotten kingdom above the clouds"
-                    >
-
-                </div>
 
             </div>
 
 
-            <div class="divider"></div>
-
-
-            <!-- GENERATE -->
-
             <div class="generate-area">
 
                 <button
-                    class="generate-btn"
+                    class="generate"
                     id="generateBtn"
                     onclick="generateStory()"
                 >
-
-                    <span class="generate-icon">
-                        ✨
-                    </span>
-
-                    Create My Story
-
+                    ✦ CREATE MY STORY
                 </button>
 
 
@@ -820,319 +1258,334 @@
                     id="loading"
                 >
 
-                    <span class="spinner"></span>
+                    <span class="loader"></span>
 
-                    STORY AI is bringing your imagination to life...
+                    The worlds are beginning to take shape...
 
                 </div>
 
-
-                <div
-                    class="error"
-                    id="error"
-                ></div>
-
             </div>
 
-
-            <!-- RESULT -->
-
-            <div
-                class="result"
-                id="result"
-            >
-
-                <div class="result-label">
-                    Your story
-                </div>
-
-                <h2 id="resultTitle">
-                    Your Story
-                </h2>
-
-                <div id="storyOutput"></div>
-
-            </div>
 
         </section>
 
-    </main>
 
+        <!-- =================================================
+             RIGHT — WORLD
+        ================================================== -->
 
-    <script>
+        <section class="panel world-panel">
 
-        /* =========================
-           MOOD SELECTION
-        ========================= */
 
-        function selectChoice(button) {
+            <img
+                class="world-image"
+                src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=85"
+                alt=""
+            >
 
-            const group = button.dataset.group;
 
-            document
-                .querySelectorAll(
-                    '.choice[data-group="' + group + '"]'
-                )
-                .forEach(function(item) {
+            <div class="world-overlay"></div>
 
-                    item.classList.remove("selected");
 
-                });
+            <div class="manuscript">
 
-            button.classList.add("selected");
+                Once upon a time...
 
-        }
+                <br><br>
 
+                Somewhere beyond the
+                edge of the known world,
+                a door waited.
 
-        /* =========================
-           GENERATE STORY
-        ========================= */
+            </div>
 
-        async function generateStory() {
 
-            const idea =
-                document
-                    .getElementById("storyIdea")
-                    .value
-                    .trim();
+            <div class="world-content">
 
+                <div class="world-label">
+                    YOUR STORY WORLD
+                </div>
 
-            const title =
-                document
-                    .getElementById("storyTitle")
-                    .value
-                    .trim();
+                <h2>
+                    Where imagination
+                    becomes a place.
+                </h2>
 
+                <p>
+                    Your choices become characters,
+                    landscapes, mysteries and memories.
+                </p>
 
-            const genre =
-                document
-                    .getElementById("genre")
-                    .value;
+            </div>
 
 
-            const length =
-                document
-                    .getElementById("length")
-                    .value;
+        </section>
 
 
-            const character =
-                document
-                    .getElementById("character")
-                    .value
-                    .trim();
+    </div>
 
 
-            const setting =
-                document
-                    .getElementById("setting")
-                    .value
-                    .trim();
+    <!-- =================================================
+         RESULT
+    ================================================== -->
 
+    <section
+        class="result"
+        id="result"
+    >
 
-            const selectedMood =
-                document.querySelector(
-                    '.choice[data-group="mood"].selected'
-                );
+        <div class="result-label">
+            YOUR STORY HAS BEGUN
+        </div>
 
+        <h2 id="resultTitle">
+            Your Story
+        </h2>
 
-            const mood =
-                selectedMood
-                    ? selectedMood.dataset.value
-                    : "Magical";
+        <div
+            class="story-output"
+            id="storyOutput"
+        ></div>
 
+    </section>
 
-            /* -------------------------
-               VALIDATION
-            ------------------------- */
 
-            if (!idea) {
+</main>
 
-                showError(
-                    "Tell STORY AI what you are imagining first ✨"
-                );
 
-                return;
+<script>
 
-            }
+/* =====================================================
+   HOME
+===================================================== */
 
+function goHome(){
 
-            /* -------------------------
-               UI
-            ------------------------- */
+    window.location.href = "index.html";
 
-            const button =
-                document.getElementById(
-                    "generateBtn"
-                );
+}
 
 
-            const loading =
-                document.getElementById(
-                    "loading"
-                );
+/* =====================================================
+   MOOD
+===================================================== */
 
+function selectMood(button){
 
-            const result =
-                document.getElementById(
-                    "result"
-                );
+    document
+        .querySelectorAll(".mood")
+        .forEach(item => {
 
+            item.classList.remove("selected");
 
-            hideError();
+        });
 
-            button.disabled = true;
+    button.classList.add("selected");
 
-            loading.classList.add("active");
+}
 
-            result.classList.remove("show");
 
+/* =====================================================
+   GENERATE STORY
+===================================================== */
 
-            /* -------------------------
-               SEND TO FLASK
-            ------------------------- */
+async function generateStory(){
 
-            try {
 
-                const response = await fetch(
-                    "/api/generate-story",
-                    {
-                        method: "POST",
+    const idea =
+        document
+        .getElementById("storyIdea")
+        .value
+        .trim();
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
 
-                        body: JSON.stringify({
+    const title =
+        document
+        .getElementById("storyTitle")
+        .value
+        .trim();
 
-                            idea: idea,
 
-                            title: title,
+    const character =
+        document
+        .getElementById("character")
+        .value
+        .trim();
 
-                            genre: genre,
 
-                            mood: mood,
+    const setting =
+        document
+        .getElementById("setting")
+        .value
+        .trim();
 
-                            length: length,
 
-                            character: character,
+    const genre =
+        document
+        .getElementById("genre")
+        .value;
 
-                            setting: setting
 
-                        })
+    const length =
+        document
+        .getElementById("length")
+        .value;
 
-                    }
-                );
 
+    const selectedMood =
+        document.querySelector(
+            ".mood.selected"
+        );
 
-                const data =
-                    await response.json();
 
+    const mood =
+        selectedMood
+        ? selectedMood.dataset.mood
+        : "Magical";
 
-                /* -------------------------
-                   BACKEND ERROR
-                ------------------------- */
 
-                if (!response.ok) {
+    if(!idea){
 
-                    throw new Error(
-                        data.message ||
-                        "Story generation failed."
-                    );
+        alert(
+            "Begin with an idea first ✦"
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "generateBtn"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    button.disabled = true;
+
+    loading.classList.add("show");
+
+    result.classList.remove("show");
+
+
+    try{
+
+
+        const response =
+            await fetch(
+                "/api/generate-story",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        idea:idea,
+
+                        title:title,
+
+                        character:character,
+
+                        setting:setting,
+
+                        genre:genre,
+
+                        mood:mood,
+
+                        length:length
+
+                    })
 
                 }
+            );
 
 
-                /* -------------------------
-                   DISPLAY STORY
-                ------------------------- */
-
-                document.getElementById(
-                    "resultTitle"
-                ).innerText =
-                    data.title ||
-                    title ||
-                    "Your Story";
+        const data =
+            await response.json();
 
 
-                document.getElementById(
-                    "storyOutput"
-                ).innerText =
-                    data.story ||
-                    "No story was returned.";
+        if(!response.ok){
 
-
-                result.classList.add("show");
-
-
-                setTimeout(function() {
-
-                    result.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }, 100);
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "STORY AI ERROR:",
-                    error
-                );
-
-                showError(
-                    error.message ||
-                    "Something went wrong while creating your story."
-                );
-
-            }
-
-            finally {
-
-                button.disabled = false;
-
-                loading.classList.remove("active");
-
-            }
+            throw new Error(
+                data.message ||
+                "Story generation failed."
+            );
 
         }
 
 
-        /* =========================
-           ERROR MESSAGE
-        ========================= */
-
-        function showError(message) {
-
-            const error =
-                document.getElementById("error");
-
-            error.innerText = message;
-
-            error.classList.add("show");
-
-        }
+        document
+            .getElementById(
+                "resultTitle"
+            )
+            .innerText =
+                data.title ||
+                title ||
+                "Your Story";
 
 
-        function hideError() {
+        document
+            .getElementById(
+                "storyOutput"
+            )
+            .innerText =
+                data.story ||
+                data.generated_story ||
+                "Your story has begun.";
 
-            const error =
-                document.getElementById("error");
 
-            error.innerText = "";
+        result.classList.add("show");
 
-            error.classList.remove("show");
 
-        }
+        setTimeout(()=>{
 
-    </script>
+            result.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        },100);
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "STORY AI could not create the story right now.\n\n" +
+            error.message
+        );
+
+    }
+    finally{
+
+        button.disabled = false;
+
+        loading.classList.remove("show");
+
+    }
+
+}
+
+</script>
 
 </body>
-
 </html>
-```
