@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,7 +10,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
 
@@ -18,168 +23,222 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: "Inter", sans-serif;
-            background: #f7fbf5;
-            color: #123c28;
-            overflow: hidden;
+            background: #f5faf3;
+            color: #174b2d;
+            overflow-x: hidden;
         }
 
-        /* =========================
-           APP CONTAINER
-        ========================= */
-
-        .app {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 20% 10%, #ffffff 0%, transparent 30%),
-                linear-gradient(135deg, #f9fcf7, #e8f4e7);
-        }
-
-        /* =========================
-           PAGE
-        ========================= */
+        /* =========================================
+           GLOBAL
+        ========================================= */
 
         .page {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .serif {
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        /* =========================================
+           FLOATING PARTICLES
+        ========================================= */
+
+        .particles {
             position: absolute;
             inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(69, 153, 91, 0.35);
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            left: 12%;
+            top: 25%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 80%;
+            top: 20%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            left: 70%;
+            top: 70%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            left: 25%;
+            top: 75%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(5) {
+            left: 52%;
+            top: 18%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatParticle {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-35px) scale(1.5);
+                opacity: 0.8;
+            }
+        }
+
+        /* =========================================
+           PAGE 1
+        ========================================= */
+
+        #welcome {
+
+            min-height: 100vh;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            opacity: 0;
-            visibility: hidden;
-
-            transform: translateX(60px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                visibility 0.7s;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(180, 221, 183, 0.65),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(191, 226, 194, 0.6),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fbfdf9,
+                    #eaf6e8
+                );
         }
 
-        .page.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
+        .welcome-content {
 
-        .page-content {
-            width: min(1180px, 92%);
-            height: min(720px, 90vh);
+            width: min(1050px, 90%);
 
-            display: grid;
-            grid-template-columns: 45% 55%;
-
-            background: rgba(255,255,255,0.72);
-
-            border: 1px solid rgba(35,105,65,0.12);
-
-            border-radius: 32px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 30px 80px rgba(31, 91, 52, 0.12),
-                inset 0 0 40px rgba(255,255,255,0.6);
-
-            backdrop-filter: blur(10px);
-        }
-
-        /* =========================
-           TEXT SIDE
-        ========================= */
-
-        .text-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            padding: 65px;
+            text-align: center;
 
             position: relative;
-            z-index: 5;
+
+            z-index: 2;
+
+            transform: translateY(-15px);
         }
 
         .small-title {
-            color: #3a8f52;
-            font-size: 15px;
-            letter-spacing: 4px;
+
+            color: #4c9a5b;
+
             text-transform: uppercase;
-            font-weight: 600;
 
-            margin-bottom: 18px;
-        }
+            letter-spacing: 6px;
 
-        h1 {
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: clamp(55px, 6vw, 82px);
-
-            line-height: 0.9;
-
-            color: #12472c;
-
-            margin-bottom: 28px;
+            font-size: 13px;
 
             font-weight: 600;
+
+            margin-bottom: 20px;
+
+            animation: fadeDown 1s ease;
         }
 
-        h2 {
+        .welcome-content h1 {
+
             font-family: "Cormorant Garamond", serif;
 
-            font-size: clamp(38px, 4vw, 58px);
+            font-size: clamp(68px, 10vw, 125px);
 
-            line-height: 1.05;
+            line-height: 0.88;
 
-            color: #174b30;
+            color: #164d2d;
 
-            margin-bottom: 25px;
+            font-weight: 600;
+
+            animation: fadeUp 1s ease;
         }
 
-        .gold-line {
-            width: 75px;
-            height: 3px;
+        .welcome-content h1 span {
 
-            background: #68a873;
+            color: #52a363;
 
-            margin-bottom: 28px;
-
-            border-radius: 20px;
         }
 
-        .description {
-            color: #53655a;
+        .welcome-content h2 {
 
-            font-size: 17px;
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(35px, 5vw, 60px);
+
+            font-weight: 500;
+
+            color: #2b7042;
+
+            margin-top: 22px;
+
+            animation: fadeUp 1.2s ease;
+
+        }
+
+        .welcome-content p {
+
+            max-width: 650px;
+
+            margin: 22px auto 0;
+
+            color: #66776a;
+
+            font-size: 16px;
 
             line-height: 1.8;
 
-            max-width: 470px;
+            animation: fadeUp 1.4s ease;
+
         }
 
-        /* =========================
-           BUTTON
-        ========================= */
+        .begin-btn {
 
-        .next-btn {
-            margin-top: 42px;
-
-            width: 190px;
-
-            padding: 16px 25px;
+            margin-top: 35px;
 
             border: none;
 
-            border-radius: 50px;
-
-            background: #278c47;
+            background: #268746;
 
             color: white;
+
+            padding: 17px 42px;
+
+            border-radius: 50px;
 
             font-size: 16px;
 
@@ -187,427 +246,1094 @@
 
             cursor: pointer;
 
-            transition: all 0.3s ease;
+            box-shadow:
+                0 15px 35px rgba(38, 135, 70, 0.25);
+
+            transition: 0.3s;
+
+            animation:
+                fadeUp 1.6s ease,
+                gentlePulse 3s infinite 2s;
+        }
+
+        .begin-btn:hover {
+
+            transform: translateY(-5px);
+
+            background: #176c35;
 
             box-shadow:
-                0 10px 25px rgba(39,140,71,0.2);
+                0 20px 40px rgba(38, 135, 70, 0.32);
         }
 
-        .next-btn:hover {
-            background: #176f35;
+        @keyframes gentlePulse {
 
-            transform: translateY(-3px);
+            0%,
+            100% {
+                box-shadow:
+                    0 15px 35px rgba(38, 135, 70, 0.25);
+            }
+
+            50% {
+                box-shadow:
+                    0 18px 45px rgba(38, 135, 70, 0.4);
+            }
+        }
+
+        /* BOOK */
+
+        .book {
+
+            position: absolute;
+
+            width: 170px;
+
+            height: 115px;
+
+            right: 8%;
+
+            bottom: 12%;
+
+            transform: rotate(-12deg);
+
+            opacity: 0.85;
+
+            animation: bookFloat 5s infinite ease-in-out;
+        }
+
+        .book-left,
+        .book-right {
+
+            position: absolute;
+
+            width: 85px;
+
+            height: 110px;
+
+            background: #ffffff;
+
+            border: 2px solid #b9d7bc;
+
+            top: 0;
 
             box-shadow:
-                0 15px 30px rgba(39,140,71,0.3);
+                0 15px 30px rgba(41, 104, 55, 0.12);
         }
 
-        .arrow {
-            margin-left: 15px;
-            font-size: 20px;
+        .book-left {
+
+            left: 0;
+
+            border-radius: 7px 2px 2px 7px;
+
+            transform: skewY(5deg);
         }
 
-        /* =========================
-           IMAGE SIDE
-        ========================= */
+        .book-right {
 
-        .image-section {
+            right: 0;
+
+            border-radius: 2px 7px 7px 2px;
+
+            transform: skewY(-5deg);
+        }
+
+        .book-line {
+
+            position: absolute;
+
+            height: 2px;
+
+            width: 50px;
+
+            background: #b8d8bd;
+
+            left: 18px;
+
+        }
+
+        .book-line:nth-child(1) {
+            top: 32px;
+        }
+
+        .book-line:nth-child(2) {
+            top: 48px;
+        }
+
+        .book-line:nth-child(3) {
+            top: 64px;
+        }
+
+        @keyframes bookFloat {
+
+            0%,
+            100% {
+                transform: rotate(-12deg) translateY(0);
+            }
+
+            50% {
+                transform: rotate(-8deg) translateY(-18px);
+            }
+        }
+
+        /* =========================================
+           PAGE 2
+        ========================================= */
+
+        #imagine {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f8fcf7,
+                    #e7f4e6
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .imagine-wrapper {
+
+            width: min(1150px, 90%);
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .section-label {
+
+            color: #499658;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+        .imagine-text h2 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(50px, 6vw, 78px);
+
+            line-height: 0.95;
+
+            color: #174b2d;
+
+            font-weight: 600;
+        }
+
+        .imagine-text p {
+
+            margin-top: 25px;
+
+            color: #66786a;
+
+            line-height: 1.9;
+
+            font-size: 16px;
+
+            max-width: 500px;
+        }
+
+        .imagine-card {
+
+            height: 500px;
+
+            border-radius: 35px;
+
             position: relative;
 
             overflow: hidden;
 
             background:
+
+                radial-gradient(
+                    circle at 50% 25%,
+                    rgba(255,255,255,0.9),
+                    transparent 20%
+                ),
+
                 linear-gradient(
                     180deg,
-                    rgba(230,246,228,0.2),
-                    rgba(21,91,43,0.1)
+                    #dff1df 0%,
+                    #b7dcb9 45%,
+                    #6ea979 100%
                 );
+
+            box-shadow:
+                0 30px 80px rgba(37, 103, 52, 0.18);
         }
 
-        .image-section img {
-            width: 100%;
-            height: 100%;
+        /* moon */
 
-            object-fit: cover;
+        .moon {
 
-            transition: transform 8s ease;
-        }
+            width: 95px;
 
-        .page.active .image-section img {
-            transform: scale(1.05);
-        }
-
-        /* =========================
-           PAGE 1 IMAGE
-        ========================= */
-
-        .page1-image {
-            background:
-                linear-gradient(
-                    rgba(221,244,219,0.15),
-                    rgba(16,82,41,0.2)
-                ),
-                url("https://images.unsplash.com/photo-1511108690759-009324a90311?auto=format&fit=crop&w=1400&q=85")
-                center/cover;
-        }
-
-        /* =========================
-           PAGE 2 IMAGE
-        ========================= */
-
-        .page2-image {
-            background:
-                linear-gradient(
-                    rgba(221,244,219,0.1),
-                    rgba(16,82,41,0.2)
-                ),
-                url("https://images.unsplash.com/photo-1455885666463-17a9d2a4d6d3?auto=format&fit=crop&w=1400&q=85")
-                center/cover;
-        }
-
-        /* =========================
-           PAGE 3 IMAGE
-        ========================= */
-
-        .page3-image {
-            background:
-                linear-gradient(
-                    rgba(221,244,219,0.1),
-                    rgba(16,82,41,0.2)
-                ),
-                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85")
-                center/cover;
-        }
-
-        /* =========================
-           PAGE 4 IMAGE
-        ========================= */
-
-        .page4-image {
-            background:
-                linear-gradient(
-                    rgba(221,244,219,0.1),
-                    rgba(16,82,41,0.2)
-                ),
-                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=85")
-                center/cover;
-        }
-
-        /* =========================
-           PAGE NUMBER
-        ========================= */
-
-        .page-number {
-            position: absolute;
-
-            top: 28px;
-            right: 30px;
-
-            width: 42px;
-            height: 42px;
+            height: 95px;
 
             border-radius: 50%;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #fffdf0;
 
-            background: #176d3c;
-
-            color: white;
-
-            font-size: 14px;
-            font-weight: 600;
-
-            z-index: 10;
-        }
-
-        /* =========================
-           DECORATION
-        ========================= */
-
-        .leaf {
             position: absolute;
 
-            color: #7bb77f;
+            top: 55px;
 
-            font-size: 70px;
+            right: 70px;
 
-            opacity: 0.25;
+            box-shadow:
+                0 0 45px rgba(255,255,220,0.8);
 
-            pointer-events: none;
+            animation: moonGlow 4s infinite ease-in-out;
         }
 
-        .leaf.one {
-            top: 30px;
-            left: 20px;
-            transform: rotate(-25deg);
+        @keyframes moonGlow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 35px rgba(255,255,220,0.6);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 65px rgba(255,255,220,0.95);
+            }
         }
 
-        .leaf.two {
-            bottom: 25px;
-            right: 20px;
-            transform: rotate(35deg);
-        }
+        /* tower */
 
-        /* =========================
-           PAGINATION
-        ========================= */
+        .tower {
 
-        .pagination {
-            position: fixed;
+            position: absolute;
 
-            bottom: 35px;
+            bottom: 0;
+
             left: 50%;
 
             transform: translateX(-50%);
 
-            display: flex;
-            gap: 10px;
+            width: 120px;
 
-            z-index: 100;
+            height: 300px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #355d3c,
+                    #537b58,
+                    #294d31
+                );
+
+            border-radius: 4px 4px 0 0;
+
+            box-shadow:
+                0 0 40px rgba(25, 72, 34, 0.2);
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
+        .tower-top {
 
-            border-radius: 50%;
+            position: absolute;
 
-            border: 1px solid #39874e;
+            top: -60px;
 
-            background: transparent;
+            left: -30px;
 
-            cursor: pointer;
+            width: 180px;
 
-            transition: all 0.3s ease;
+            height: 80px;
+
+            background: #315f3b;
+
+            clip-path: polygon(
+                50% 0,
+                100% 100%,
+                0 100%
+            );
         }
 
-        .dot.active {
-            width: 28px;
+        .tower-window {
 
-            border-radius: 20px;
+            width: 18px;
 
-            background: #2f8c49;
+            height: 35px;
+
+            background: #e9f4c8;
+
+            position: absolute;
+
+            left: 51px;
+
+            border-radius: 10px 10px 2px 2px;
+
+            box-shadow:
+                0 0 15px rgba(239,244,171,0.8);
         }
 
-        /* =========================
-           FINAL PAGE
-        ========================= */
-
-        .final-page .text-section {
-            align-items: center;
-            text-align: center;
+        .tower-window:nth-child(1) {
+            top: 45px;
         }
 
-        .final-page .description {
-            max-width: 520px;
+        .tower-window:nth-child(2) {
+            top: 110px;
         }
 
-        .begin-btn {
-            width: 230px;
+        .tower-window:nth-child(3) {
+            top: 175px;
+        }
 
-            padding: 17px;
+        /* clouds */
 
-            border: none;
+        .cloud {
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 45px;
+
+            background: rgba(255,255,255,0.55);
 
             border-radius: 50px;
 
-            background: #278c47;
+            filter: blur(1px);
+
+            animation: cloudMove 14s infinite linear;
+        }
+
+        .cloud::before,
+        .cloud::after {
+
+            content: "";
+
+            position: absolute;
+
+            background: inherit;
+
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+
+            width: 65px;
+
+            height: 65px;
+
+            left: 25px;
+
+            bottom: 5px;
+        }
+
+        .cloud::after {
+
+            width: 80px;
+
+            height: 80px;
+
+            right: 20px;
+
+            bottom: 3px;
+        }
+
+        .cloud.one {
+
+            top: 170px;
+
+            left: -160px;
+
+        }
+
+        .cloud.two {
+
+            top: 260px;
+
+            right: -180px;
+
+            animation-delay: 5s;
+
+        }
+
+        @keyframes cloudMove {
+
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(700px);
+            }
+        }
+
+        /* =========================================
+           PAGE 3
+        ========================================= */
+
+        #create {
+
+            background: #f9fcf8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .create-wrapper {
+
+            width: min(1050px, 90%);
+        }
+
+        .create-wrapper h2 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(55px, 7vw, 90px);
+
+            line-height: 0.9;
+
+            color: #174b2d;
+
+            margin-bottom: 25px;
+        }
+
+        .create-wrapper > p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #6c7b6f;
+
+            line-height: 1.8;
+        }
+
+        .world-cards {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+
+            margin-top: 55px;
+        }
+
+        .world-card {
+
+            background: white;
+
+            border: 1px solid #dce9dc;
+
+            border-radius: 25px;
+
+            padding: 35px 25px;
+
+            box-shadow:
+                0 15px 40px rgba(41, 105, 56, 0.08);
+
+            transition: 0.35s;
+
+            animation: cardFloat 5s infinite ease-in-out;
+        }
+
+        .world-card:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .world-card:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        .world-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 25px 55px rgba(41, 105, 56, 0.15);
+        }
+
+        @keyframes cardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .world-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #e7f4e8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            margin: 0 auto 20px;
+        }
+
+        .world-card h3 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 30px;
+
+            color: #225a36;
+
+            margin-bottom: 10px;
+        }
+
+        .world-card p {
+
+            color: #748278;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+        /* =========================================
+           PAGE 4
+        ========================================= */
+
+        #enter {
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(132, 194, 140, 0.3),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(92, 159, 104, 0.25),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #123d26,
+                    #1f6540,
+                    #0e3522
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
 
             color: white;
 
-            font-size: 17px;
+            text-align: center;
+        }
+
+        .enter-wrapper {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: min(850px, 90%);
+        }
+
+        .enter-label {
+
+            color: #a9d8ae;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            font-size: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .enter-wrapper h2 {
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(65px, 9vw, 110px);
+
+            line-height: 0.85;
+
+            font-weight: 600;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 5px 30px rgba(0,0,0,0.2);
+        }
+
+        .enter-wrapper p {
+
+            max-width: 580px;
+
+            margin: auto;
+
+            color: #d3e8d5;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+        }
+
+        /* MAGIC BOOK */
+
+        .magic-book {
+
+            position: relative;
+
+            width: 180px;
+
+            height: 130px;
+
+            margin: 45px auto 25px;
+
+            perspective: 800px;
+
+            animation: magicBookFloat 4s infinite ease-in-out;
+        }
+
+        .magic-book::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+
+            height: 170px;
+
+            left: 5px;
+
+            top: -20px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(195, 239, 190, 0.4),
+                    transparent 65%
+                );
+
+            animation: magicGlow 3s infinite alternate;
+        }
+
+        .book-cover {
+
+            position: absolute;
+
+            width: 88px;
+
+            height: 120px;
+
+            background: #f7fff3;
+
+            border: 2px solid #9bd1a0;
+
+            top: 5px;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .book-cover.left {
+
+            left: 4px;
+
+            transform:
+                perspective(500px)
+                rotateY(18deg);
+
+            transform-origin: right;
+        }
+
+        .book-cover.right {
+
+            right: 4px;
+
+            transform:
+                perspective(500px)
+                rotateY(-18deg);
+
+            transform-origin: left;
+        }
+
+        .book-cover::after {
+
+            content: "✦";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #459653;
+
+            font-size: 30px;
+        }
+
+        @keyframes magicBookFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+
+        @keyframes magicGlow {
+
+            from {
+                transform: scale(0.8);
+                opacity: 0.4;
+            }
+
+            to {
+                transform: scale(1.3);
+                opacity: 0.9;
+            }
+        }
+
+        .enter-btn {
+
+            border: 1px solid rgba(255,255,255,0.4);
+
+            background: #f6fff5;
+
+            color: #19532f;
+
+            padding: 18px 45px;
+
+            border-radius: 50px;
+
+            font-size: 16px;
 
             font-weight: 600;
 
             cursor: pointer;
 
-            margin-top: 35px;
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.2);
 
-            transition: 0.3s;
+            transition: 0.35s;
         }
 
-        .begin-btn:hover {
-            transform: scale(1.04);
+        .enter-btn:hover {
 
-            background: #176f35;
+            transform: translateY(-5px) scale(1.03);
+
+            background: white;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.3);
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* stars */
 
-        @media(max-width: 850px) {
+        .star {
 
-            body {
-                overflow: auto;
+            position: absolute;
+
+            color: #d5efd5;
+
+            font-size: 18px;
+
+            animation: starFloat 4s infinite ease-in-out;
+        }
+
+        .star:nth-child(1) {
+            left: 12%;
+            top: 20%;
+        }
+
+        .star:nth-child(2) {
+            right: 15%;
+            top: 18%;
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(3) {
+            left: 20%;
+            bottom: 18%;
+            animation-delay: 2s;
+        }
+
+        .star:nth-child(4) {
+            right: 20%;
+            bottom: 25%;
+            animation-delay: 3s;
+        }
+
+        @keyframes starFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.35;
             }
 
-            .app {
-                min-height: 100vh;
-                height: auto;
-                padding: 25px 0 80px;
+            50% {
+                transform: translateY(-18px);
+                opacity: 1;
             }
+        }
+
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 800px) {
 
             .page {
-                position: relative;
+                min-height: 100svh;
+            }
 
+            .book {
                 display: none;
-
-                inset: auto;
-
-                min-height: calc(100vh - 100px);
-
-                transform: none;
-
-                opacity: 1;
-
-                visibility: visible;
             }
 
-            .page.active {
-                display: flex;
-            }
-
-            .page-content {
-                height: auto;
-
-                min-height: 80vh;
-
+            .imagine-wrapper {
                 grid-template-columns: 1fr;
-
-                width: 90%;
-
-                border-radius: 25px;
+                gap: 35px;
+                padding: 70px 0;
             }
 
-            .text-section {
-                padding: 45px 30px;
-                order: 1;
+            .imagine-card {
+                height: 400px;
             }
 
-            .image-section {
-                height: 380px;
-                order: 2;
+            .world-cards {
+                grid-template-columns: 1fr;
+                margin-top: 35px;
+                padding-bottom: 60px;
             }
 
-            h1 {
-                font-size: 58px;
+            #create {
+                min-height: auto;
+                padding: 90px 0;
             }
 
-            h2 {
-                font-size: 43px;
+            .welcome-content {
+                transform: translateY(0);
             }
 
-            .pagination {
-                bottom: 20px;
+            .welcome-content h1 {
+                font-size: 70px;
             }
+
+            .welcome-content h2 {
+                font-size: 40px;
+            }
+
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-<div class="app">
 
-    <!-- ======================================
+    <!-- =========================================
          PAGE 1
-    ======================================= -->
+    ========================================= -->
 
-    <section class="page active" id="page1">
+    <section
+        class="page"
+        id="welcome"
+    >
 
-        <div class="page-content">
+        <div class="particles">
 
-            <div class="text-section">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
 
-                <div class="small-title">
-                    Welcome to
-                </div>
+        </div>
 
-                <h1>
-                    STORY<br>
-                    AI
-                </h1>
 
-                <div class="gold-line"></div>
+        <div class="welcome-content">
 
-                <h2>
-                    Turn imagination<br>
-                    into reality.
-                </h2>
+            <div class="small-title">
+                Welcome to
+            </div>
 
-                <p class="description">
-                    Become the writer of your own dreams
-                    and indulge in an immersive world where
-                    every thought can become a story.
-                </p>
+            <h1>
+                STORY <span>AI</span>
+            </h1>
 
-                <button class="next-btn" onclick="nextPage()">
-                    Begin Journey
-                    <span class="arrow">→</span>
-                </button>
+            <h2>
+                Turn imagination into reality.
+            </h2>
+
+            <p>
+                Become the writer of your own dreams and
+                indulge in an immersive world where every
+                thought can become a story.
+            </p>
+
+            <button
+                class="begin-btn"
+                onclick="goToPage('imagine')"
+            >
+                Begin Your Journey ✦
+            </button>
+
+        </div>
+
+
+        <div class="book">
+
+            <div class="book-left">
+
+                <div class="book-line"></div>
+                <div class="book-line"></div>
+                <div class="book-line"></div>
 
             </div>
 
-            <div class="image-section page1-image">
-
-                <div class="page-number">
-                    01
-                </div>
-
-            </div>
+            <div class="book-right"></div>
 
         </div>
 
     </section>
 
 
-    <!-- ======================================
+
+    <!-- =========================================
          PAGE 2
-    ======================================= -->
+    ========================================= -->
 
-    <section class="page" id="page2">
+    <section
+        class="page"
+        id="imagine"
+    >
 
-        <div class="page-content">
+        <div class="imagine-wrapper">
 
-            <div class="text-section">
 
-                <div class="small-title">
-                    Your imagination
+            <div class="imagine-text">
+
+                <div class="section-label">
+                    The beginning
                 </div>
 
                 <h2>
-                    Your Story,<br>
-                    Your World.
+                    Every story<br>
+                    begins with<br>
+                    a thought.
                 </h2>
 
-                <div class="gold-line"></div>
+                <p>
+                    A forgotten place.
+                    A character you've never met.
+                    A world that exists only inside your imagination.
 
-                <p class="description">
-                    Have a character in your mind?
-                    A mysterious kingdom?
-                    A forgotten memory?
-
-                    <br><br>
-
-                    Give your ideas a voice and let
-                    STORY AI transform them into
-                    stories that feel uniquely yours.
+                    STORY AI transforms those fragments
+                    into an immersive world you can step into.
                 </p>
-
-                <button class="next-btn" onclick="nextPage()">
-                    Create My Story
-                    <span class="arrow">→</span>
-                </button>
 
             </div>
 
-            <div class="image-section page2-image">
 
-                <div class="page-number">
-                    02
+            <div class="imagine-card">
+
+                <div class="moon"></div>
+
+                <div class="cloud one"></div>
+
+                <div class="cloud two"></div>
+
+
+                <div class="tower">
+
+                    <div class="tower-top"></div>
+
+                    <div class="tower-window"></div>
+
+                    <div class="tower-window"></div>
+
+                    <div class="tower-window"></div>
+
                 </div>
 
             </div>
@@ -617,54 +1343,96 @@
     </section>
 
 
-    <!-- ======================================
+
+    <!-- =========================================
          PAGE 3
-    ======================================= -->
+    ========================================= -->
 
-    <section class="page" id="page3">
+    <section
+        class="page"
+        id="create"
+    >
 
-        <div class="page-content">
+        <div class="create-wrapper">
 
-            <div class="text-section">
-
-                <div class="small-title">
-                    AI storytelling
-                </div>
-
-                <h2>
-                    AI That Inspires
-                    Creativity.
-                </h2>
-
-                <div class="gold-line"></div>
-
-                <p class="description">
-                    Stuck in the middle of your story?
-
-                    <br><br>
-
-                    Let AI help you discover unexpected
-                    characters, dramatic twists, magical
-                    worlds and unforgettable endings.
-
-                    <br><br>
-
-                    You imagine.
-                    STORY AI helps you create.
-                </p>
-
-                <button class="next-btn" onclick="nextPage()">
-                    Explore Possibilities
-                    <span class="arrow">→</span>
-                </button>
-
+            <div class="section-label">
+                Your imagination
             </div>
 
-            <div class="image-section page3-image">
+            <h2>
+                Create worlds<br>
+                that belong only to you.
+            </h2>
 
-                <div class="page-number">
-                    03
+            <p>
+                Shape your characters.
+                Choose your world.
+                Decide how your story feels.
+
+                Then let STORY AI transform your ideas
+                into an experience worth getting lost in.
+            </p>
+
+
+            <div class="world-cards">
+
+
+                <div class="world-card">
+
+                    <div class="world-icon">
+                        ✍️
+                    </div>
+
+                    <h3>
+                        Your Characters
+                    </h3>
+
+                    <p>
+                        Create heroes, dreamers,
+                        explorers and mysterious
+                        souls who carry your story.
+                    </p>
+
                 </div>
+
+
+                <div class="world-card">
+
+                    <div class="world-icon">
+                        🏰
+                    </div>
+
+                    <h3>
+                        Your World
+                    </h3>
+
+                    <p>
+                        Build kingdoms, cities,
+                        distant planets or places
+                        that exist beyond reality.
+                    </p>
+
+                </div>
+
+
+                <div class="world-card">
+
+                    <div class="world-icon">
+                        🌌
+                    </div>
+
+                    <h3>
+                        Your Adventure
+                    </h3>
+
+                    <p>
+                        Mystery, fantasy, romance,
+                        adventure or anything
+                        your imagination can create.
+                    </p>
+
+                </div>
+
 
             </div>
 
@@ -673,160 +1441,93 @@
     </section>
 
 
-    <!-- ======================================
+
+    <!-- =========================================
          PAGE 4
-    ======================================= -->
+    ========================================= -->
 
-    <section class="page final-page" id="page4">
+    <section
+        class="page"
+        id="enter"
+    >
 
-        <div class="page-content">
+        <div class="particles">
 
-            <div class="text-section">
+            <div class="star">✦</div>
+            <div class="star">✧</div>
+            <div class="star">✦</div>
+            <div class="star">✧</div>
 
-                <div class="small-title">
-                    Your adventure begins
-                </div>
+        </div>
 
-                <h2>
-                    Step Into<br>
-                    Immersive Worlds.
-                </h2>
 
-                <div class="gold-line"></div>
+        <div class="enter-wrapper">
 
-                <p class="description">
-                    Leave the ordinary behind.
+            <div class="enter-label">
+                The story is waiting
+            </div>
 
-                    <br><br>
+            <h2>
+                Your world<br>
+                begins here.
+            </h2>
 
-                    Explore stories, create characters,
-                    travel through imaginary kingdoms
-                    and experience worlds that exist
-                    only because you imagined them.
+            <p>
+                Close your eyes for a moment.
 
-                    <br><br>
+                Imagine the place.
+                Imagine the character.
+                Imagine what happens next.
 
-                    <strong>
-                        Your story is waiting.
-                    </strong>
-                </p>
+                Now open the door.
+            </p>
 
-                <button class="begin-btn" onclick="startStory()">
-                    Let's Begin ✨
-                </button>
+
+            <div class="magic-book">
+
+                <div class="book-cover left"></div>
+
+                <div class="book-cover right"></div>
 
             </div>
 
-            <div class="image-section page4-image">
 
-                <div class="page-number">
-                    04
-                </div>
-
-            </div>
+            <button
+                class="enter-btn"
+                onclick="openCreator()"
+            >
+                Enter STORY AI ✦
+            </button>
 
         </div>
 
     </section>
 
 
-    <!-- ======================================
-         PAGINATION
-    ======================================= -->
 
-    <div class="pagination">
+    <script>
 
-        <span class="dot active" onclick="goToPage(1)"></span>
+        function goToPage(id) {
 
-        <span class="dot" onclick="goToPage(2)"></span>
-
-        <span class="dot" onclick="goToPage(3)"></span>
-
-        <span class="dot" onclick="goToPage(4)"></span>
-
-    </div>
-
-</div>
-
-
-<script>
-
-    let currentPage = 1;
-
-    function goToPage(pageNumber) {
-
-        document
-            .querySelectorAll(".page")
-            .forEach(page => {
-                page.classList.remove("active");
-            });
-
-        document
-            .getElementById("page" + pageNumber)
-            .classList.add("active");
-
-        document
-            .querySelectorAll(".dot")
-            .forEach(dot => {
-                dot.classList.remove("active");
-            });
-
-        document
-            .querySelectorAll(".dot")[pageNumber - 1]
-            .classList.add("active");
-
-        currentPage = pageNumber;
-    }
-
-
-    function nextPage() {
-
-        if (currentPage < 4) {
-            goToPage(currentPage + 1);
-        }
-
-    }
-
-
-    function startStory() {
-
-        /*
-         * CHANGE THIS TO YOUR ACTUAL
-         * STORY CREATION PAGE.
-         *
-         * Example:
-         *
-         * window.location.href = "create.html";
-         */
-
-        window.location.href = "create.html";
-
-    }
-
-
-    /* Keyboard navigation */
-
-    document.addEventListener("keydown", function(event) {
-
-        if (event.key === "ArrowRight") {
-
-            if (currentPage < 4) {
-                nextPage();
-            }
+            document
+                .getElementById(id)
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
 
         }
 
-        if (event.key === "ArrowLeft") {
 
-            if (currentPage > 1) {
-                goToPage(currentPage - 1);
-            }
+        function openCreator() {
+
+            window.location.href =
+                "create.html";
 
         }
 
-    });
+    </script>
 
-</script>
 
 </body>
+
 </html>
