@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Story Studio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🎬 AI Story Studio</h1>
+            <p>Turn your imagination into an immersive story.</p>
+        </header>
+
+        <section class="card">
+
+            <h2>💡 Create Your Story</h2>
+
+            <label>Story Idea</label>
+
+            <textarea
+                id="idea"
+                placeholder="Example: A scientist discovers that dreams are memories from the future..."
+            ></textarea>
+
+            <div class="grid">
+
+                <div>
+                    <label>Genre</label>
+
+                    <select id="genre">
+                        <option>Science Fiction</option>
+                        <option>Fantasy</option>
+                        <option>Mystery</option>
+                        <option>Thriller</option>
+                        <option>Horror</option>
+                        <option>Romance</option>
+                        <option>Adventure</option>
+                        <option>Drama</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Tone</label>
+
+                    <select id="tone">
+                        <option>Cinematic</option>
+                        <option>Dark</option>
+                        <option>Emotional</option>
+                        <option>Suspenseful</option>
+                        <option>Funny</option>
+                        <option>Inspirational</option>
+                        <option>Mysterious</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button id="generateBtn">
+                ✨ Generate Story
+            </button>
+
+        </section>
+
+
+        <section class="card story-section">
+
+            <h2>📖 Your Story</h2>
+
+            <div id="loading" class="hidden">
+                Creating your story...
+            </div>
+
+            <div id="storyOutput">
+
+                <p class="placeholder">
+                    Your generated story will appear here.
+                </p>
+
+            </div>
+
+            <div class="actions">
+
+                <button id="continueBtn">
+                    ➡️ Continue Story
+                </button>
+
+                <button id="rewriteBtn">
+                    ✍️ Rewrite
+                </button>
+
+                <button id="endingBtn">
+                    🔀 Alternative Ending
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
